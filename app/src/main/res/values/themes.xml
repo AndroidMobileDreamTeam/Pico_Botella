@@ -3,7 +3,10 @@
     <style name="Base.Theme.Pico_Botella" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--        <style name="android:fontFamily">@font/protest_strike_regular</style>-->
     </style>
 
     <style name="Theme.Pico_Botella" parent="Base.Theme.Pico_Botella" />
+
+
 </resources>
