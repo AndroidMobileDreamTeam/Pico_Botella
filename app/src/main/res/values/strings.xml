@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pico_Botella</string>
+    <string name="bottle_iv">BottleImageView</string>
+    <string name="txt_presioname">Presióname</string>
+    <string name="startbtndescription">startBtnDescription</string>
 </resources>
