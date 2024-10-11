@@ -11,54 +11,16 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/wood_background_light"
         tools:context=".MainActivity">
-        <!--    android:background="@drawable/wood_background"-->
-
-        <ImageView
-            android:id="@+id/bottle"
-            android:layout_width="300dp"
-            android:layout_height="500dp"
-            android:contentDescription="@string/bottle_iv"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.333"
-            app:srcCompat="@drawable/bottle" />
 
         <TextView
-            android:id="@+id/textv_presioname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/txt_presioname"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:fontFamily="@font/protest_strike_regular"
+            android:text="Hello World!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bottle"
-            app:layout_constraintVertical_bias="0.855" />
-
-        <ImageButton
-            android:id="@+id/btn_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/startbtndescription"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/textv_presioname"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.959"
-            app:srcCompat="@drawable/circle" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
