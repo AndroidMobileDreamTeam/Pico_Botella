@@ -1,22 +1,30 @@
 package com.example.pico_botella
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.pico_botella.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var keepSplashOnScreen = true
+
+        installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
+
+        Handler(Looper.getMainLooper()).postDelayed(
+            { keepSplashOnScreen = false }, 5000)
+
         super.onCreate(savedInstanceState)
 
-        // Inflar el layout usando View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Iniciar la animación
         startTextViewAnimation()
         buttonStartAnimation()
         buttonStartClick()
