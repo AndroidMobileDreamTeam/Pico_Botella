@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pico_botella"
+    namespace = "com.example.spin_bottle_app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.pico_botella"
-        minSdk = 24
+        applicationId = "com.example.spin_bottle_app"
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

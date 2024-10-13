@@ -1,4 +1,4 @@
-package com.example.pico_botella
+package com.example.spin_bottle_app
 
 import android.os.Bundle
 import android.os.Handler
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.pico_botella.databinding.ActivityMainBinding
+import com.example.spin_bottle_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
