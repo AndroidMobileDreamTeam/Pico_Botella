@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/wood_background_light"
-        tools:context=".MainActivity">
+        tools:context="com.example.pico_botella.view.MainActivity">
         <!--    android:background="@drawable/wood_background"-->
 
         <ImageView

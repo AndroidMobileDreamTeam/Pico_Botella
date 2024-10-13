@@ -3,4 +3,6 @@
     <string name="bottle_iv">BottleImageView</string>
     <string name="txt_presioname">Presióname</string>
     <string name="startbtndescription">startBtnDescription</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
