@@ -1,15 +1,17 @@
-package com.example.pico_botella
+package com.example.spin_bottle_app
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.example.pico_botella.databinding.ActivityMainBinding
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.spin_bottle_app.databinding.ActivityMainBinding
 import kotlin.random.Random
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,13 +19,18 @@ class MainActivity : AppCompatActivity() {
     private var currentAngle = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var keepSplashOnScreen = true
+
+        installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
+
+        Handler(Looper.getMainLooper()).postDelayed(
+            { keepSplashOnScreen = false }, 5000)
+
         super.onCreate(savedInstanceState)
 
-        // Inflar el layout usando View Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Iniciar la animación
         startTextViewAnimation()
         buttonStartAnimation()
         buttonStartClick()

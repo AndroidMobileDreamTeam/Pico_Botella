@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.pico_botella"
+    namespace = "com.example.spin_bottle_app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.pico_botella"
-        minSdk = 24
+        applicationId = "com.example.spin_bottle_app"
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -37,10 +37,12 @@ android {
     buildFeatures {
         dataBinding = true
     }
+    buildToolsVersion = rootProject.extra["buildToolsVersion"] as String
 
 }
 
 dependencies {
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
