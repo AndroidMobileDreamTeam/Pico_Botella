@@ -1,4 +1,4 @@
-package com.example.spin_bottle_app
+package com.example.pico_botella.view
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
@@ -10,6 +10,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.ActivityMainBinding
 import kotlin.random.Random
 
