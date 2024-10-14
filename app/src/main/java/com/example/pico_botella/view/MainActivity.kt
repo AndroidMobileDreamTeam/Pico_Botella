@@ -56,27 +56,23 @@ class MainActivity : AppCompatActivity() {
 
         animator.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
-                // Opcional: código para cuando la animación empieza
             }
 
             override fun onAnimationEnd(animation: Animator) {
-                // Mostrar los botones de nuevo
                 showElements()
+
             }
 
             override fun onAnimationCancel(animation: Animator) {
-                // Opcional: código para manejar cancelaciones
             }
 
             override fun onAnimationRepeat(animation: Animator) {
-                // Opcional: código para repeticiones de la animación
             }
         })
 
         // Iniciar la animación
         animator.start()
         currentAngle = randomAngle
-
     }
 
     private fun startTextViewAnimation() {
@@ -108,6 +104,8 @@ class MainActivity : AppCompatActivity() {
         val textV = binding.textvPresioname
         button.visibility = View.VISIBLE
         textV.visibility = View.VISIBLE
+        startTextViewAnimation()
+        buttonStartAnimation()
     }
 
     private fun hideElements(){
