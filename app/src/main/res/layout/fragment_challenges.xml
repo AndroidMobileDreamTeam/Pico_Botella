@@ -13,5 +13,11 @@
         android:background="@color/gray"
         tools:context=".view.fragment.HomeInventoryFragment">
 
+        <include
+            android:id="@+id/contentToolbar"
+            layout="@layout/toolbar_challenges" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>

@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-  
-</selector>
+<vector android:autoMirrored="true"
+    android:height="48dp"
+    android:width="48dp"
+    android:tint="@color/orange"
+    android:viewportHeight="48"
+    android:viewportWidth="48"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<path
+android:fillColor="@color/orange"
+android:pathData="M40,22H15.66l11.18,-11.18L24,8l-16,16 16,16 2.83,-2.83L15.66,26H40v-4z"/>
+    </vector>
