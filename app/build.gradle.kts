@@ -44,17 +44,13 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.splashscreen)
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(libs.androidx.core.ktx.v190)
+    implementation(libs.androidx.appcompat.v161)
     implementation(libs.material)
     implementation(libs.androidx.activity)
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
-
-
+    androidTestImplementation(libs.androidx.espresso.core.v351)
 }
