@@ -1,41 +1,40 @@
-package com.example.pico_botella.view
+package com.example.spin_bottle.view.fragment
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
 import com.example.spin_bottle_app.R
-import com.example.spin_bottle_app.databinding.ActivityMainBinding
+import com.example.spin_bottle_app.databinding.HomeFragmentBinding
 import kotlin.random.Random
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+
+class HomeFragment : Fragment() {
+    private lateinit var binding: HomeFragmentBinding
+
 
     private var currentAngle = 0f
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        var keepSplashOnScreen = true
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-        installSplashScreen().setKeepOnScreenCondition { keepSplashOnScreen }
-
-        Handler(Looper.getMainLooper()).postDelayed(
-            { keepSplashOnScreen = false }, 5000)
-
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = HomeFragmentBinding.inflate(layoutInflater)
 
         startTextViewAnimation()
         buttonStartAnimation()
         buttonStartClick()
+
+        return binding.root
     }
+
+
 
     private fun bottleAnimation() {
         val bottle = binding.bottle
@@ -77,25 +76,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun startTextViewAnimation() {
         val textV = binding.textvPresioname
-        val animation = AnimationUtils.loadAnimation(this, R.anim.grow)
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.grow)
         textV.startAnimation(animation)
     }
 
     private fun buttonStartAnimation() {
         val button = binding.btnStart
-        val animation = AnimationUtils.loadAnimation(this, R.anim.grow)
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.grow)
         button.startAnimation(animation)
     }
 
     private fun fadeTextvAnimation() {
         val textV = binding.textvPresioname
-        val animation = AnimationUtils.loadAnimation(this, R.anim.fade)
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade)
         textV.startAnimation(animation)
     }
 
     private fun fadeButtonAnimation() {
         val button = binding.btnStart
-        val animation = AnimationUtils.loadAnimation(this, R.anim.fade)
+        val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade)
         button.startAnimation(animation)
     }
 
@@ -128,3 +127,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
