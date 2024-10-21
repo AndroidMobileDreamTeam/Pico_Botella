@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/wood_background_light">
+
+        <ImageView
+            android:id="@+id/bottle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/bottle_iv"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.44"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintWidth_percent="0.7"
+            app:srcCompat="@drawable/bottle" />
+
+        <TextView
+            android:id="@+id/textv_presioname"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="36dp"
+            android:fontFamily="@font/protest_strike_regular"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/txt_presioname"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_percent="0.8" />
+
+        <ImageView
+            android:id="@+id/btn_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/startbtndescription"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/textv_presioname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bottle"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintWidth_percent="0.2"
+            app:srcCompat="@drawable/circle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
