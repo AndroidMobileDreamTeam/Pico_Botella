@@ -11,6 +11,94 @@
         android:layout_height="match_parent"
         android:background="@drawable/wood_background_light">
 
+        <!-- Aqui va la toolbar -->
+
+        <RelativeLayout
+            android:id="@+id/custom_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+
+            android:background="@drawable/toolbar_background"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btn_rate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icono_star"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/toolbar_rate">
+
+                </ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btn_volume"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icono_volume_on"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/toolbar_volume">
+
+                </ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btn_instructions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icono_instructions"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/toolbar_instructions">
+
+                </ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icono_add"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/toolbar_add">
+
+                </ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btn_share"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icono_share"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/toolbar_share">
+
+                </ImageButton>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
         <ImageView
             android:id="@+id/bottle"
             android:layout_width="0dp"
