@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun startTextViewAnimation() {
-        val textV = binding.textvPresioname
+        val textV = binding.textvPressMe
         val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.grow)
         textV.startAnimation(animation)
     }
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun fadeTextvAnimation() {
-        val textV = binding.textvPresioname
+        val textV = binding.textvPressMe
         val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade)
         textV.startAnimation(animation)
     }
@@ -100,7 +100,7 @@ class HomeFragment : Fragment() {
 
     private fun showElements(){
         val button = binding.btnStart
-        val textV = binding.textvPresioname
+        val textV = binding.textvPressMe
         button.visibility = View.VISIBLE
         textV.visibility = View.VISIBLE
         startTextViewAnimation()
@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
 
     private fun hideElements(){
         val button = binding.btnStart
-        val textV = binding.textvPresioname
+        val textV = binding.textvPressMe
         fadeTextvAnimation()
         button.visibility = View.INVISIBLE
         fadeButtonAnimation()
@@ -118,7 +118,7 @@ class HomeFragment : Fragment() {
 
     private fun buttonStartClick() {
         val button = binding.btnStart
-        val textV = binding.textvPresioname
+        val textV = binding.textvPressMe
         button.setOnClickListener {
             button.clearAnimation()
             textV.clearAnimation()
