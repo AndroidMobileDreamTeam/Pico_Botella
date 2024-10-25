@@ -8,16 +8,113 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/gray"
-        tools:context=".view.fragment.HomeInventoryFragment">
+        tools:context=".view.fragment.ChallengesFragment">
 
-        <include
-            android:id="@+id/contentToolbar"
-            layout="@layout/toolbar_challenges" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/abajoA8x100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/abajoA98x100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.98"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/derechaA96x100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96"/>
+
+            <androidx.drawerlayout.widget.DrawerLayout
+                android:id="@+id/drawer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".view.fragment.ChallengesFragment"
+                tools:openDrawer="start">
+
+                <include
+                    android:id="@+id/contentToolbar"
+                    layout="@layout/toolbar_challenges"/>
+            </androidx.drawerlayout.widget.DrawerLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+
+            tools:listitem="@layout/item_challenges"
+
+            app:layout_constraintTop_toBottomOf="@+id/abajoA8x100"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/startbtndescription"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/abajoA98x100"
+            app:layout_constraintRight_toLeftOf="@id/derechaA96x100"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_circle2" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </layout>
+
+
+    <!--?xml version="1.0" encoding="utf-8"?>
+<layout- xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<data>
+
+</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".view.fragment.ChallengesFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/abajoA15x100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"/>
+
+    <include
+        android:id="@+id/contentToolbar"
+        layout="@layout/toolbar_challenges"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <include
+        android:id="@+id/contentChallenge"
+        layout="@layout/item_challenges"
+        app:layout_constraintTop_toBottomOf="@id/abajoA15x100"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout -->
