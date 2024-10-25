@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = HomeFragmentBinding.inflate(inflater, container, false)
+        binding = HomeFragmentBinding.inflate(layoutInflater)
 
         // Inicializar el audio de fondo
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.background_music)
@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
         // Configurar el boton de volumen
         val btnVolume = binding.root.findViewById<ImageButton>(R.id.btn_volume)
         btnVolume.setOnClickListener {
-            toogleAudio(btnVolume)
+            toggleAudio(btnVolume)
         }
 
         startTextViewAnimation()
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun toogleAudio(btnVolume: ImageButton) {
+    private fun toggleAudio(btnVolume: ImageButton) {
         if (isAudioOn) {
             mediaPlayer.pause()
             btnVolume.setImageResource(R.drawable.icono_volume_off)
