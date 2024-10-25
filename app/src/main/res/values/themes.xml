@@ -1,9 +1,10 @@
 <resources>
-    <!-- Base application theme. -->
     <style name="Base.Theme.spin_bottle_app" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-<!--        <style name="android:fontFamily">@font/protest_strike_regular</style>-->
+        <item name="materialButtonStyle">@style/Widget.spin_bottle_app.Button</item>
+    </style>
+
+    <style name="Widget.spin_bottle_app.Button" parent="Widget.MaterialComponents.Button">
+
     </style>
 
     <style name="Theme.spin_bottle_app" parent="Base.Theme.spin_bottle_app">
