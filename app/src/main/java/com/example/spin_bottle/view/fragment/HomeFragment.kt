@@ -2,12 +2,14 @@ package com.example.spin_bottle.view.fragment
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
@@ -15,17 +17,29 @@ import kotlin.random.Random
 
 
 class HomeFragment : Fragment() {
+
     private lateinit var binding: HomeFragmentBinding
-
-
     private var currentAngle = 0f
+    private var isAudioOn = true
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = HomeFragmentBinding.inflate(layoutInflater)
+        binding = HomeFragmentBinding.inflate(inflater, container, false)
+
+        // Inicializar el audio de fondo
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.background_music)
+        mediaPlayer.isLooping = true
+        mediaPlayer.start()  // Reproducir el audio al inicio
+
+        // Configurar el boton de volumen
+        val btnVolume = binding.root.findViewById<ImageButton>(R.id.btn_volume)
+        btnVolume.setOnClickListener {
+            toogleAudio(btnVolume)
+        }
 
         startTextViewAnimation()
         buttonStartAnimation()
@@ -34,6 +48,16 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    private fun toogleAudio(btnVolume: ImageButton) {
+        if (isAudioOn) {
+            mediaPlayer.pause()
+            btnVolume.setImageResource(R.drawable.icono_volume_off)
+        } else {
+            mediaPlayer.start()
+            btnVolume.setImageResource(R.drawable.icono_volume_on)
+        }
+        isAudioOn = !isAudioOn
+    }
 
 
     private fun bottleAnimation() {
@@ -125,6 +149,11 @@ class HomeFragment : Fragment() {
             hideElements()
             bottleAnimation()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mediaPlayer.stop()
     }
 }
 
