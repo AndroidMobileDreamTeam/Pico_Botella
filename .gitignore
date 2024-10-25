@@ -1,15 +1,80 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Built application files
+*.apk
+*.ap_
+*.dex
+*.class
+*.jar
+
+# Gradle files
+.gradle/
+build/
+*/build/
+*/outputs/
+*/intermediates/
+
+# Local configuration file (local.properties)
 local.properties
+
+# Log files
+*.log
+
+# Android Studio specific files
+.idea/
+*.iml
+
+# Miscellaneous
+*.hprof
+*.orig
+*.swp
+*.swo
+.DS_Store
+*.apk
+*.ap_
+*.dex
+
+# Gradle Wrapper files
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Android Studio specific
+*.jks
+*.keystore
+*.jks
+*.zip
+*.tgz
+*.tar.gz
+
+# CMake files
+CMakeLists.txt.user
+*.cmake
+
+# External libraries
+.externalNativeBuild/
+
+# Java class files
+*.class
+
+# Generated files
+generated/
+gen/
+
+# IntelliJ
+*.iws
+*.iml
+*.ipr
+
+# Proguard
+proguard/
+
+# Other files
+*.out
+*.so
+
+# Kotlin files
+*.kotlin_module
+*.kotlin_metadata
+
+# Android Studio Device Monitor
+*.hprof
+*.log
+*.trace
