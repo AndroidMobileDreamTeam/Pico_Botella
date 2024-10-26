@@ -42,12 +42,15 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx.v190)
+    implementation(libs.androidx.appcompat.v161)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -88,4 +91,6 @@ dependencies {
 
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+
+    androidTestImplementation(libs.androidx.espresso.core.v351)
 }
