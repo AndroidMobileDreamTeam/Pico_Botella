@@ -10,7 +10,7 @@
 
         <androidx.cardview.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/cvInventory"
+            android:id="@+id/cvChallenge"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,18 +28,18 @@
                 android:padding="0dp">
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/abajoA46pd"
+                    android:id="@+id/downTo46pd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_constraintGuide_begin="46dp"/>
 
                 <View
-                    android:id="@+id/linea"
+                    android:id="@+id/line"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:background="@color/gray"
-                    app:layout_constraintTop_toBottomOf="@id/abajoA46pd"
+                    app:layout_constraintTop_toBottomOf="@id/downTo46pd"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -51,42 +51,47 @@
 
                     android:src="@drawable/ic_fire"
                     android:padding="10dp"
+                    android:contentDescription="FireImage"
 
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <ImageView
-                    android:id="@+id/item_challenge_trash_icon"
+                <ImageButton
+                    android:id="@+id/delete_challenge_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
                     android:src="@drawable/ic_trash"
                     android:padding="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="DeleteChallengeButton"
 
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
 
-                <ImageView
-                    android:id="@+id/item_challenge_pencil_icon"
+                <ImageButton
+                    android:id="@+id/edit_challenge_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
                     android:src="@drawable/ic_pencil"
                     android:padding="10dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="EditChallengeButton"
 
-                    card_view:layout_constraintTop_toTopOf="parent"
-                    card_view:layout_constraintEnd_toStartOf="@id/item_challenge_trash_icon" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/delete_challenge_button" />
 
                 <TextView
-                    android:id="@+id/reto"
+                    android:id="@+id/challenge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Realiza un reciclerview que al crearse liste una api de pokemones"
                     android:padding="6dp"
                     android:textSize="16sp"
-                    card_view:layout_constraintTop_toBottomOf="@+id/abajoA46pd"
-                    card_view:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/downTo46pd"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

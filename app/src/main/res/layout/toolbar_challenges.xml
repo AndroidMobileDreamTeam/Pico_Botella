@@ -14,13 +14,18 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/gray">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/toolbar_back_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:src="@drawable/ic_back"
+                android:background="@android:color/transparent"
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="16dp"
+
+                android:contentDescription="BackButton"
+
                 app:tint="@color/orange1" />
 
             <TextView
