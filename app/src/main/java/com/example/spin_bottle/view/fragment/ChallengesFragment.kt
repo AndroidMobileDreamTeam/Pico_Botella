@@ -33,20 +33,20 @@ class ChallengesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        controladoresFCB()
-        controladoresICB()
-        // observadorViewModel()
+        controllerFCB()
+        controllerICB()
+        observerViewModel()
     }
 
     // Esto creo que va aca pero no estoy 100% seguro, quizas va en el ChallengeViewHolder (aunque no creo) // <============================== VEAN ESTO
-    private fun controladoresFCB() {
+    private fun controllerFCB() {
         bindingFCB.addChallengeBtn.setOnClickListener {
             // Codigo que guie a la ventana para añadir retos // <============================== VEAN ESTO
         }
     }
 
     // Esto no se si va aca o en el ChallengeViewHolder // <============================== VEAN ESTO
-    private fun controladoresICB() {
+    private fun controllerICB() {
         bindingICB.editChallengeButton.setOnClickListener {
             // Codigo que guie a la ventana para editar reto // <============================== VEAN ESTO
         }
@@ -55,7 +55,7 @@ class ChallengesFragment : Fragment() {
         }
     }
 
-    private fun observadorViewModel(){
+    private fun observerViewModel(){
         observerChallengesList()
         // observerProgress()
     }
