@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.spin_bottle.model.Challenge
-// import com.example.spin_bottle.model.Product
 import com.example.spin_bottle.repository.ChallengeRepository
 import kotlinx.coroutines.launch
 
@@ -20,14 +19,12 @@ class ChallengesViewModel(application: Application) : AndroidViewModel(applicati
     private val _progresState = MutableLiveData(false)
     val progresState: LiveData<Boolean> = _progresState
 
-/*    private val _listProducts = MutableLiveData<MutableList<Product>>()
-    val listProducts: LiveData<MutableList<Product>> = _listProducts*/
-
     fun saveChallenge(challenge: Challenge) {
         viewModelScope.launch {
             _progresState.value = true
             try {
                 challengeRepository.saveChallenge(challenge)
+                getChallengesList()
                 _progresState.value = false
             } catch (e: Exception) {
                 _progresState.value = false
@@ -84,7 +81,4 @@ class ChallengesViewModel(application: Application) : AndroidViewModel(applicati
             }
         }
     }*/
-
-
-
 }

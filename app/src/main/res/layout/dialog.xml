@@ -26,7 +26,7 @@
             android:inputType="text"
             android:minHeight="48dp"
             android:hint="@string/dialog_add_placeholder"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/orange1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_dialog" />
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/cancel"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/orange1"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_dialog" />
