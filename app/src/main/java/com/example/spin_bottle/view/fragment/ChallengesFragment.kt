@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.view.adapter.ChallengeAdapter
 import com.example.spin_bottle.view.dialog.ChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
@@ -34,29 +35,22 @@ class ChallengesFragment : Fragment() {
     }
 
     private fun controllerFCB() {
+        val onSaveCallback: (Challenge) -> Unit = { challenge ->
+            challengeViewModel.saveChallenge(challenge)
+        }
+
         bindingFCB.addChallengeBtn.setOnClickListener {
-            val challengeDialog = ChallengeDialog(requireContext()) { challenge ->
-                challengeViewModel.saveChallenge(challenge)
-            }
+            val challengeDialog = ChallengeDialog(requireContext(), null, onSaveCallback)
             challengeDialog.show()
         }
     }
 
-//    private fun controllerICB() {
-//        bindingICB.editChallengeButton.setOnClickListener {
-//
-//        }
-//        bindingICB.deleteChallengeButton.setOnClickListener {
-//
-//        }
-//    }
-
-    private fun observerViewModel(){
+    private fun observerViewModel() {
         observerChallengesList()
         // observerProgress()
     }
 
-    private fun observerChallengesList(){
+    private fun observerChallengesList() {
         challengeViewModel.getChallengesList()
         challengeViewModel.challengesList.observe(viewLifecycleOwner) { challengesList ->
             val recycler = bindingFCB.recyclerview
@@ -64,14 +58,14 @@ class ChallengesFragment : Fragment() {
 
             recycler.layoutManager = layoutManager
 
-            val adapter = ChallengeAdapter(challengesList, findNavController())
+            val adapter = ChallengeAdapter(challengesList, findNavController(), challengeViewModel)
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
         }
     }
 
-    private fun observerProgress(){
-        challengeViewModel.progresState.observe(viewLifecycleOwner){status ->
+    private fun observerProgress() {
+        challengeViewModel.progressState.observe(viewLifecycleOwner) { status ->
             bindingFCB.progress.isVisible = status
         }
     }

@@ -12,7 +12,8 @@ import com.example.spin_bottle_app.databinding.DialogBinding
 
 class ChallengeDialog(
     private val context: Context,
-    private val onChallengeAdded: (Challenge) -> Unit
+    private val challengeToEdit: Challenge? = null,
+    private val callback: (Challenge) -> Unit,
 ) {
 
     fun show() {
@@ -26,18 +27,29 @@ class ChallengeDialog(
         val buttonCancel = dialogBinding.btnCancelDialog
         val buttonSave = dialogBinding.btnSaveDialog
 
-        text.text = context.getString(R.string.dialog_add_text)
-        buttonSave.isEnabled = false
+        text.text = if (challengeToEdit == null) {
+            context.getString(R.string.dialog_add_text)
+        } else {
+            context.getString(R.string.dialog_edit_text)
+        }
+
+        editText.setText(challengeToEdit?.description)
+        buttonSave.isEnabled = challengeToEdit != null
         buttonSave.backgroundTintList =
-            ContextCompat.getColorStateList(context, R.color.gray_disabled)
+            ContextCompat.getColorStateList(
+                context,
+                if (challengeToEdit != null) R.color.orange1 else R.color.gray_disabled
+            )
 
         buttonCancel.setOnClickListener {
             dialog.dismiss()
         }
 
         buttonSave.setOnClickListener {
-            val challenge = Challenge(description = editText.text.toString())
-            onChallengeAdded(challenge)
+            val challengeDescription = editText.text.toString()
+            val challenge = challengeToEdit?.copy(description = challengeDescription)
+                ?: Challenge(description = challengeDescription)
+            callback(challenge)
             dialog.dismiss()
         }
 
