@@ -13,4 +13,15 @@
         <item name="android:windowSplashScreenBrandingImage">@drawable/branding</item>
         <item name="android:fontFamily">@font/protest_strike_regular</item>
     </style>
+    
+    <style name="instrucciones_title">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">arial</item>
+    </style>
+
+    <style name="instrucciones_text">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">arial</item>
+    </style>
 </resources>
