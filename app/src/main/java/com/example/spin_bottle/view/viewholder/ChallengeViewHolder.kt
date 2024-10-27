@@ -1,39 +1,40 @@
 package com.example.spin_bottle.view.viewholder
 
-import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.spin_bottle_app.R
-import com.example.spin_bottle_app.databinding.ItemChallengesBinding
 import com.example.spin_bottle.model.Challenge
+import com.example.spin_bottle.view.dialog.ChallengeDialog
+import com.example.spin_bottle.viewmodel.ChallengesViewModel
+import com.example.spin_bottle_app.databinding.ItemChallengesBinding
 
-class ChallengeViewHolder(binding: ItemChallengesBinding, navController: NavController) : RecyclerView.ViewHolder(binding.root)  {
-    val bindingItem = binding
-    val navController = navController
+class ChallengeViewHolder(
+    binding: ItemChallengesBinding, val navController: NavController,
+    private val challengesViewModel: ChallengesViewModel
+) :
+    RecyclerView.ViewHolder(binding.root) {
+    private val bindingItem = binding
 
 
     fun setItemChallenge(challenge: Challenge) {
         bindingItem.challenge.text = challenge.description
 
-        /*bindingItem.tvName.text = inventory.name
-        bindingItem.tvPrice.text = "$ ${inventory.price}"
-        bindingItem.tvQuantity.text = "${inventory.quantity}"*/
+        controllerICB(challenge)
+    }
 
-        bindingItem.cvChallenge.setOnClickListener {
-            // En teoria no deberia pasar nada si se presiona el cvChallnege
-            /* val bundle = Bundle()
-            bundle.putSerializable("clave", challenge)
-            navController.navigate(R.id.action_firstFragment_to_secondFragment, bundle) */
+    private fun controllerICB(challenge: Challenge) {
+        val onEditCallback: (Challenge) -> Unit = { auxChallenge ->
+            challengesViewModel.updateChallenge(auxChallenge)
         }
 
         bindingItem.editChallengeButton.setOnClickListener {
-            // Codigo que guie a la ventana para editar reto // <============================== VEAN ESTO
+            val challengeDialog =
+                ChallengeDialog(bindingItem.root.context, challenge, onEditCallback)
+            challengeDialog.show()
         }
 
         bindingItem.deleteChallengeButton.setOnClickListener {
-            // Codigo que guie a la ventana para eliminar reto // <============================== VEAN ESTO
-        }
 
+        }
     }
 
 }

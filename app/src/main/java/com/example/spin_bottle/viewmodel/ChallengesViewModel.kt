@@ -16,42 +16,42 @@ class ChallengesViewModel(application: Application) : AndroidViewModel(applicati
     private val _challengesList = MutableLiveData<MutableList<Challenge>>()
     val challengesList: LiveData<MutableList<Challenge>> get() = _challengesList
 
-    private val _progresState = MutableLiveData(false)
-    val progresState: LiveData<Boolean> = _progresState
+    private val _progressState = MutableLiveData(false)
+    val progressState: LiveData<Boolean> = _progressState
 
     fun saveChallenge(challenge: Challenge) {
         viewModelScope.launch {
-            _progresState.value = true
+            _progressState.value = true
             try {
                 challengeRepository.saveChallenge(challenge)
                 getChallengesList()
-                _progresState.value = false
+                _progressState.value = false
             } catch (e: Exception) {
-                _progresState.value = false
+                _progressState.value = false
             }
         }
     }
 
     fun getChallengesList() {
         viewModelScope.launch {
-            _progresState.value = true
+            _progressState.value = true
             try {
                 _challengesList.value = challengeRepository.getChallengesList()
-                _progresState.value = false
+                _progressState.value = false
             } catch (e: Exception) {
-                _progresState.value = false
+                _progressState.value = false
             }
         }
     }
 
     fun deleteChallenge(challenge: Challenge) {
         viewModelScope.launch {
-            _progresState.value = true
+            _progressState.value = true
             try {
                 challengeRepository.deleteChallenge(challenge)
-                _progresState.value = false
+                _progressState.value = false
             } catch (e: Exception) {
-                _progresState.value = false
+                _progressState.value = false
             }
 
         }
@@ -59,26 +59,27 @@ class ChallengesViewModel(application: Application) : AndroidViewModel(applicati
 
     fun updateChallenge(challenge: Challenge) {
         viewModelScope.launch {
-            _progresState.value = true
+            _progressState.value = true
             try {
                 challengeRepository.updateChallenge(challenge)
-                _progresState.value = false
+                getChallengesList()
+                _progressState.value = false
             } catch (e: Exception) {
-                _progresState.value = false
+                _progressState.value = false
             }
         }
     }
 
-/*    fun getProducts() {
-        viewModelScope.launch {
-            _progresState.value = true
-            try {
-                _listProducts.value = inventoryRepository.getProducts()
-                _progresState.value = false
+    /*    fun getProducts() {
+            viewModelScope.launch {
+                _progresState.value = true
+                try {
+                    _listProducts.value = inventoryRepository.getProducts()
+                    _progresState.value = false
 
-            } catch (e: Exception) {
-                _progresState.value = false
+                } catch (e: Exception) {
+                    _progresState.value = false
+                }
             }
-        }
-    }*/
+        }*/
 }
