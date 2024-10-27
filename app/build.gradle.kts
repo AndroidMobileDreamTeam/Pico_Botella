@@ -52,5 +52,6 @@ dependencies {
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
+    implementation("com.airbnb.android:lottie:6.0.0")
     androidTestImplementation(libs.androidx.espresso.core.v351)
 }
