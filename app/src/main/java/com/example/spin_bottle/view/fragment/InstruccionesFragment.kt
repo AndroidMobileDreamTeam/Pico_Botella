@@ -23,6 +23,11 @@ class InstruccionesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolBar()
+    }
+
+    private fun setupToolBar(){
+        binding.contentToolbar.toolbarTitle.text = getString(R.string.reglas_title)
     }
 
 }

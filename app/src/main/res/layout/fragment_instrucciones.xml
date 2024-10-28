@@ -8,15 +8,19 @@
         tools:context="com.example.spin_bottle.view.fragment.InstruccionesFragment"
         android:background="@color/gray">
 
+        <include
+            android:id="@+id/contentToolbar"
+            layout="@layout/toolbar_challenges"/>
+
         <TextView
             android:id="@+id/tvComoTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/como_title"
             android:theme="@style/instrucciones_title"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginHorizontal="20dp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contentToolbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
         <TextView
