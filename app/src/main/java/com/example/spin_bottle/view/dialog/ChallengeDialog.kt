@@ -5,6 +5,8 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle_app.R
@@ -69,5 +71,25 @@ class ChallengeDialog(
         })
 
         dialog.show()
+    }
+
+    fun showStandart() {
+        val builder = AlertDialog.Builder(context)
+        builder.setCancelable(false)
+        builder.setTitle(context.getString(R.string.dialog_delete_text))
+            .setMessage(challengeToEdit?.description)
+            .setPositiveButton(context.getString(R.string.si)) { dialog, _ ->
+                val challenge = challengeToEdit
+                    ?: Challenge(description = "")
+                callback(challenge)
+                dialog.dismiss()
+            }
+            .setNegativeButton(context.getString(R.string.no)) { dialog, _ ->
+                dialog.dismiss()
+            }
+        val dialog = builder.create()
+        dialog.show()
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(context, R.color.orange1))
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(context, R.color.orange1))
     }
 }

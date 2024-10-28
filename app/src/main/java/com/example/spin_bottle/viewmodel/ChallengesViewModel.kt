@@ -49,6 +49,7 @@ class ChallengesViewModel(application: Application) : AndroidViewModel(applicati
             _progressState.value = true
             try {
                 challengeRepository.deleteChallenge(challenge)
+                getChallengesList()
                 _progressState.value = false
             } catch (e: Exception) {
                 _progressState.value = false

@@ -25,6 +25,9 @@ class ChallengeViewHolder(
         val onEditCallback: (Challenge) -> Unit = { auxChallenge ->
             challengesViewModel.updateChallenge(auxChallenge)
         }
+        val onDeleteCallback: (Challenge) -> Unit = { auxChallenge ->
+            challengesViewModel.deleteChallenge(auxChallenge)
+        }
 
         bindingItem.editChallengeButton.setOnClickListener {
             val challengeDialog =
@@ -33,7 +36,9 @@ class ChallengeViewHolder(
         }
 
         bindingItem.deleteChallengeButton.setOnClickListener {
-
+            val challengeDialog =
+                ChallengeDialog(bindingItem.root.context, challenge, onDeleteCallback)
+            challengeDialog.showStandart()
         }
     }
 
