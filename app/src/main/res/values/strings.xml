@@ -7,6 +7,7 @@
     
     <!-- Instrucciones Fragment -->
     <string name="como_title">¿Cómo se juega?</string>
+    <string name="reglas_title">Reglas del juego</string>
     <string name="como_text">
         Los jugadores forman un círculo y en el centro colocan el dispositivo móvil, luego tocan
         el botón parpadeante para girar la botella.\n
