@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Pico Botella</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bottle_iv">BottleImageView</string>
-    <string name="txt_press_me">Presióname</string>
-    <string name="start_btn_description">startBtnDescription</string>
-    
+    <string name="txt_presioname">Presióname</string>
+    <string name="startbtndescription">startBtnDescription</string>
+
+    <!-- Strings de la toolbar -->
+    <string name="toolbar_rate">Califica la App</string>
+    <string name="toolbar_volume">Control Sonido</string>
+    <string name="toolbar_instructions">Instrucciones</string>
+    <string name="toolbar_add">Agregar retos</string>
+    <string name="toolbar_share">Compartir la app</string>
+
     <!-- Instrucciones Fragment -->
     <string name="como_title">¿Cómo se juega?</string>
     <string name="reglas_title">Reglas del juego</string>

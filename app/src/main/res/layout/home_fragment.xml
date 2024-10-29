@@ -11,6 +11,12 @@
         android:layout_height="match_parent"
         android:background="@drawable/wood_background_light">
 
+        <!-- Aqui va la toolbar -->
+
+        <include
+            layout="@layout/toolbar"
+            android:id="@+id/custom_toolbar" />
+
         <ImageView
             android:id="@+id/bottle"
             android:layout_width="0dp"
@@ -35,7 +41,7 @@
             android:layout_marginBottom="36dp"
             android:gravity="center"
             android:padding="8dp"
-            android:text="@string/txt_press_me"
+            android:text="@string/txt_presioname"
             android:textColor="@color/black"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"
