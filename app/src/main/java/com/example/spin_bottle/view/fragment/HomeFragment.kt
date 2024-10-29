@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
         val btnRate = binding.root.findViewById<ImageButton>(R.id.btn_rate)
         btnRate.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp")
+                data = Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
                 setPackage("com.android.vending")
             }
             startActivity(intent)
