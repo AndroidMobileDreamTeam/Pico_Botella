@@ -6,6 +6,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,46 +34,12 @@ class HomeFragment : Fragment() {
 
         binding = HomeFragmentBinding.inflate(layoutInflater)
 
-        // Inicializar el audio de fondo
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.background_music)
-        mediaPlayer.isLooping = true
-        mediaPlayer.start()  // Reproducir el audio al inicio
-
-        // Configurar el boton de calificacion
-        val btnRate = binding.root.findViewById<ImageButton>(R.id.btn_rate)
-        btnRate.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp")
-                setPackage("com.android.vending")
-            }
-            startActivity(intent)
-        }
-
-        // Configurar el boton de volumen
-        val btnVolume = binding.root.findViewById<ImageButton>(R.id.btn_volume)
-        btnVolume.setOnClickListener {
-            toggleAudio(btnVolume)
-        }
-
-        // Configurar el boton de instrucciones
-        val btnInstrucciones = binding.root.findViewById<ImageButton>(R.id.btn_instructions)
-        btnInstrucciones.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_instruccionesFragment)
-        }
-
-        // Configurar el boton para la ventana de retos
-        val btnChallenges = binding.root.findViewById<ImageButton>(R.id.btn_challenges)
-        btnChallenges.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_challengesFragment)
-        }
-
-        // Configurar el boton para compartir la app
-        val btnShare = binding.root.findViewById<ImageButton>(R.id.btn_share)
-        btnShare.setOnClickListener {
-            // AQUI VA EL CODIGO PARA COMPARTIR LA APP --> JUAN
-        }
-
-
+        mediaPlayer()
+        rateButton()
+        volumeButton()
+        instructionsButton()
+        challengesButton()
+        shareButton()
         startTextViewAnimation()
         buttonStartAnimation()
         buttonStartClick()
@@ -104,7 +71,7 @@ class HomeFragment : Fragment() {
         val animator = ObjectAnimator.ofFloat(bottle, "rotation", currentAngle, randomAngle)
 
         // Establecer la duración de la animación
-        animator.duration = 5000 // 3 segundos, por ejemplo
+        animator.duration = 4000 // 3 segundos, por ejemplo
 
         // Añadir un interpolador para hacer la animación más suave
         animator.interpolator = AccelerateDecelerateInterpolator()
@@ -154,11 +121,30 @@ class HomeFragment : Fragment() {
         button.startAnimation(animation)
     }
 
+    private fun counterTextAnimation() {
+        val txtV = binding.counterText
+
+        val timer = object : CountDownTimer(4000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                txtV.text = secondsRemaining.toString()
+            }
+
+            override fun onFinish() {
+                txtV.text = ""
+            }
+        }
+        timer.start()
+    }
+
     private fun showElements(){
         val button = binding.btnStart
         val textV = binding.textvPressMe
+        val toolbar = binding.customToolbar.toolbar
         button.visibility = View.VISIBLE
         textV.visibility = View.VISIBLE
+        toolbar.visibility = View.VISIBLE
         startTextViewAnimation()
         buttonStartAnimation()
     }
@@ -166,20 +152,69 @@ class HomeFragment : Fragment() {
     private fun hideElements(){
         val button = binding.btnStart
         val textV = binding.textvPressMe
+        val toolbar = binding.customToolbar.toolbar
         fadeTextvAnimation()
         button.visibility = View.INVISIBLE
         fadeButtonAnimation()
         textV.visibility = View.INVISIBLE
+        toolbar.visibility = View.INVISIBLE
     }
 
     private fun buttonStartClick() {
         val button = binding.btnStart
         val textV = binding.textvPressMe
+
         button.setOnClickListener {
             button.clearAnimation()
             textV.clearAnimation()
             hideElements()
+            counterTextAnimation()
             bottleAnimation()
+        }
+    }
+
+    private fun mediaPlayer(){
+        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.background_music)
+        mediaPlayer.isLooping = true
+        mediaPlayer.start()
+    }
+
+    private fun rateButton(){
+        val btnRate = binding.root.findViewById<ImageButton>(R.id.btn_rate)
+        btnRate.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp")
+                setPackage("com.android.vending")
+            }
+            startActivity(intent)
+        }
+    }
+
+    private fun volumeButton(){
+        val btnVolume = binding.root.findViewById<ImageButton>(R.id.btn_volume)
+        btnVolume.setOnClickListener {
+            toggleAudio(btnVolume)
+        }
+    }
+
+    private fun instructionsButton(){
+        val btnInstrucciones = binding.root.findViewById<ImageButton>(R.id.btn_instructions)
+        btnInstrucciones.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_instruccionesFragment)
+        }
+    }
+
+    private fun challengesButton(){
+        val btnChallenges = binding.root.findViewById<ImageButton>(R.id.btn_challenges)
+        btnChallenges.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_challengesFragment)
+        }
+    }
+
+    private fun shareButton() {
+        val btnShare = binding.root.findViewById<ImageButton>(R.id.btn_share)
+        btnShare.setOnClickListener {
+            // AQUI VA EL CODIGO PARA COMPARTIR LA APP --> JUAN
         }
     }
 
