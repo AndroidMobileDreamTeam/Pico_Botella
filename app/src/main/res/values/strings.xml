@@ -11,6 +11,25 @@
     <string name="toolbar_add">Agregar retos</string>
     <string name="toolbar_share">Compartir la app</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Instrucciones Fragment -->
+    <string name="como_title">¿Cómo se juega?</string>
+    <string name="reglas_title">Reglas del juego</string>
+    <string name="como_text">
+        Los jugadores forman un círculo y en el centro colocan el dispositivo móvil, luego tocan
+        el botón parpadeante para girar la botella.\n
+        El jugador que señale la botella debe cumplir el reto que lanza la app, de lo contrario
+        abandona el juego.
+    </string>
+    <string name="quien_title">¿Quién gana?</string>
+    <string name="quien_text">Gana el último jugador que no abandone el juego.</string>
+
+    <!-- Challenges Fragment -->
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="dialog_add_placeholder">Escriba un reto</string>
+    <string name="dialog_add_text">Agregar reto</string>
+    <string name="dialog_edit_text">Editar reto</string>
+    <string name="dialog_delete_text">¿Deseas eliminar el siguiente reto?:</string>
+    <string name="si">SI</string>
+    <string name="no">NO</string>
 </resources>
