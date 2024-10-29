@@ -41,7 +41,7 @@
             android:layout_marginBottom="36dp"
             android:gravity="center"
             android:padding="8dp"
-            android:text="@string/txt_press_me"
+            android:text="@string/txt_presioname"
             android:textColor="@color/black"
             android:textSize="32sp"
             app:layout_constraintBottom_toBottomOf="parent"

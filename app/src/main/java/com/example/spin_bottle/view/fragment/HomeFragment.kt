@@ -2,7 +2,9 @@ package com.example.spin_bottle.view.fragment
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +13,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
 import kotlin.random.Random
@@ -35,11 +38,40 @@ class HomeFragment : Fragment() {
         mediaPlayer.isLooping = true
         mediaPlayer.start()  // Reproducir el audio al inicio
 
+        // Configurar el boton de calificacion
+        val btnRate = binding.root.findViewById<ImageButton>(R.id.btn_rate)
+        btnRate.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp")
+                setPackage("com.android.vending")
+            }
+            startActivity(intent)
+        }
+
         // Configurar el boton de volumen
         val btnVolume = binding.root.findViewById<ImageButton>(R.id.btn_volume)
         btnVolume.setOnClickListener {
             toggleAudio(btnVolume)
         }
+
+        // Configurar el boton de instrucciones
+        val btnInstrucciones = binding.root.findViewById<ImageButton>(R.id.btn_instructions)
+        btnInstrucciones.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_instruccionesFragment)
+        }
+
+        // Configurar el boton para la ventana de retos
+        val btnChallenges = binding.root.findViewById<ImageButton>(R.id.btn_challenges)
+        btnChallenges.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_challengesFragment)
+        }
+
+        // Configurar el boton para compartir la app
+        val btnShare = binding.root.findViewById<ImageButton>(R.id.btn_share)
+        btnShare.setOnClickListener {
+            // AQUI VA EL CODIGO PARA COMPARTIR LA APP --> JUAN
+        }
+
 
         startTextViewAnimation()
         buttonStartAnimation()
