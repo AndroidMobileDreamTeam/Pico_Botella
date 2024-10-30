@@ -14,7 +14,11 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.spin_bottle.view.dialog.RandomChallengeDialog
+import com.example.spin_bottle.viewmodel.ChallengesViewModel
+import com.example.spin_bottle.viewmodel.PokemonsViewModel
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
 import kotlin.random.Random
@@ -26,6 +30,8 @@ class HomeFragment : Fragment() {
     private var currentAngle = 0f
     private var isAudioOn = true
     private lateinit var mediaPlayer: MediaPlayer
+    private val challengeViewModel: ChallengesViewModel by viewModels()
+    private val pokemonViewModel: PokemonsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,8 +87,8 @@ class HomeFragment : Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animator) {
+                showChallenge()
                 showElements()
-
             }
 
             override fun onAnimationCancel(animation: Animator) {
@@ -136,6 +142,10 @@ class HomeFragment : Fragment() {
             }
         }
         timer.start()
+    }
+
+    private fun showChallenge(){
+        RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel)
     }
 
     private fun showElements(){

@@ -3,6 +3,7 @@
     <string name="bottle_iv">BottleImageView</string>
     <string name="txt_presioname">Presióname</string>
     <string name="start_btn_description">BotonGiro</string>
+    <string name="cerrar">Cerrar</string>
 
     <!-- Strings de la toolbar -->
     <string name="toolbar_rate">Califica la App</string>
