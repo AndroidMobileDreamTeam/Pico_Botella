@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = HomeFragmentBinding.inflate(layoutInflater)
 
         mediaPlayer()
@@ -46,6 +45,7 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
 
     private fun toggleAudio(btnVolume: ImageButton) {
         if (isAudioOn) {
@@ -191,30 +191,44 @@ class HomeFragment : Fragment() {
     }
 
     private fun volumeButton(){
-        val btnVolume = binding.root.findViewById<ImageButton>(R.id.btn_volume)
+        val btnVolume = binding.customToolbar.btnVolume
         btnVolume.setOnClickListener {
             toggleAudio(btnVolume)
         }
     }
 
     private fun instructionsButton(){
-        val btnInstrucciones = binding.root.findViewById<ImageButton>(R.id.btn_instructions)
+        val btnInstrucciones = binding.customToolbar.btnInstructions
         btnInstrucciones.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_instruccionesFragment)
         }
     }
 
     private fun challengesButton(){
-        val btnChallenges = binding.root.findViewById<ImageButton>(R.id.btn_challenges)
+        val btnChallenges = binding.customToolbar.btnChallenges
         btnChallenges.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_challengesFragment)
         }
     }
 
     private fun shareButton() {
-        val btnShare = binding.root.findViewById<ImageButton>(R.id.btn_share)
+        val btnShare = binding.customToolbar.btnShare
         btnShare.setOnClickListener {
             // AQUI VA EL CODIGO PARA COMPARTIR LA APP --> JUAN
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!mediaPlayer.isPlaying) {
+            mediaPlayer.start()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.pause()
         }
     }
 
@@ -223,14 +237,11 @@ class HomeFragment : Fragment() {
         mediaPlayer.stop()
     }
 
-    override fun onPause() {
-        super.onPause()
-        mediaPlayer.pause()
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer.release()
     }
 
-    override fun onResume(){
-        super.onResume()
-        mediaPlayer.start()
-    }
+
 }
 
