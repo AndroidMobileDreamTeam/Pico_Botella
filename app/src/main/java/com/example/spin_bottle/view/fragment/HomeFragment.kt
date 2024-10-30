@@ -3,7 +3,6 @@ package com.example.spin_bottle.view.fragment
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Intent
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -20,6 +19,8 @@ import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.view.dialog.RandomChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle.viewmodel.PokemonsViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.spin_bottle.viewmodel.AudioViewModel
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
 import kotlin.random.Random
@@ -28,6 +29,7 @@ import kotlin.random.Random
 class HomeFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
+    private lateinit var audioViewModel: AudioViewModel
     private var currentAngle = 0f
     private var isAudioOn = true
     private lateinit var mediaPlayer: MediaPlayer
@@ -38,10 +40,18 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = HomeFragmentBinding.inflate(layoutInflater)
 
-        mediaPlayer()
+        audioViewModel = ViewModelProvider(requireActivity())[AudioViewModel::class.java]
+        audioViewModel.initMediaPlayer(requireContext())
+
+        // Observa el estado del audio
+        audioViewModel.isAudioOn.observe(viewLifecycleOwner) { isAudioOn ->
+            updateAudioState(isAudioOn)
+        }
+
+
+        //mediaPlayer()
         rateButton()
         volumeButton()
         instructionsButton()
@@ -54,15 +64,50 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun toggleAudio(btnVolume: ImageButton) {
+
+    private fun updateAudioState(isAudioOn: Boolean) {
         if (isAudioOn) {
-            mediaPlayer.pause()
-            btnVolume.setImageResource(R.drawable.icono_volume_off)
+            binding.customToolbar.btnVolume.setImageResource(R.drawable.icono_volume_on)
         } else {
-            mediaPlayer.start()
-            btnVolume.setImageResource(R.drawable.icono_volume_on)
+            binding.customToolbar.btnVolume.setImageResource(R.drawable.icono_volume_off)
         }
-        isAudioOn = !isAudioOn
+    }
+
+    private fun toggleAudio() {
+        audioViewModel.toggleAudio()
+    }
+
+
+    private fun volumeButton(){
+        val btnVolume = binding.customToolbar.btnVolume
+        btnVolume.setOnClickListener {
+            toggleAudio()
+        }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        if (audioViewModel.isAudioOn.value == true && !audioViewModel.mediaPlayer?.isPlaying!!) {
+            audioViewModel.mediaPlayer?.start()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (audioViewModel.isAudioOn.value == true) {
+            audioViewModel.mediaPlayer?.pause()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // No se libera el MediaPlayer aquí; se gestiona en el ViewModel
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        audioViewModel.mediaPlayer?.release() // Libera el MediaPlayer al destruir la actividad
     }
 
 
@@ -186,12 +231,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun mediaPlayer(){
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.background_music)
-        mediaPlayer.isLooping = true
-        mediaPlayer.start()
-    }
-
     private fun rateButton(){
         val btnRate = binding.root.findViewById<ImageButton>(R.id.btn_rate)
         btnRate.setOnClickListener {
@@ -203,47 +242,26 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun volumeButton(){
-        val btnVolume = binding.root.findViewById<ImageButton>(R.id.btn_volume)
-        btnVolume.setOnClickListener {
-            toggleAudio(btnVolume)
-        }
-    }
 
     private fun instructionsButton(){
-        val btnInstrucciones = binding.root.findViewById<ImageButton>(R.id.btn_instructions)
+        val btnInstrucciones = binding.customToolbar.btnInstructions
         btnInstrucciones.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_instruccionesFragment)
         }
     }
 
     private fun challengesButton(){
-        val btnChallenges = binding.root.findViewById<ImageButton>(R.id.btn_challenges)
+        val btnChallenges = binding.customToolbar.btnChallenges
         btnChallenges.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_challengesFragment)
         }
     }
 
     private fun shareButton() {
-        val btnShare = binding.root.findViewById<ImageButton>(R.id.btn_share)
+        val btnShare = binding.customToolbar.btnShare
         btnShare.setOnClickListener {
             // AQUI VA EL CODIGO PARA COMPARTIR LA APP --> JUAN
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        mediaPlayer.stop()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        mediaPlayer.pause()
-    }
-
-    override fun onResume(){
-        super.onResume()
-        mediaPlayer.start()
     }
 }
 
