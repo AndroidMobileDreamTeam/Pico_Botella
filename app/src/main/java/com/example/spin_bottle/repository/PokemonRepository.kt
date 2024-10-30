@@ -14,7 +14,8 @@ class PokemonRepository(val context: Context) {
         return withContext(Dispatchers.IO) {
             try {
                 val response = apiService.getPokemons()
-                response
+                val pokemonList = response.pokemons
+                pokemonList
             } catch (e: Exception) {
 
                 e.printStackTrace()

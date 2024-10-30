@@ -16,6 +16,7 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.view.dialog.RandomChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle.viewmodel.PokemonsViewModel
@@ -88,7 +89,6 @@ class HomeFragment : Fragment() {
 
             override fun onAnimationEnd(animation: Animator) {
                 showChallenge()
-                showElements()
             }
 
             override fun onAnimationCancel(animation: Animator) {
@@ -145,7 +145,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun showChallenge(){
-        RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel)
+        val showElementsCallback: () -> Unit = {
+            showElements()
+        }
+        RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel, viewLifecycleOwner, showElementsCallback)
     }
 
     private fun showElements(){

@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleOwner
 import com.bumptech.glide.Glide
+import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle.viewmodel.PokemonsViewModel
 import com.example.spin_bottle_app.databinding.ShowChallengeDialogBinding
+import kotlin.random.Random
 
 class RandomChallengeDialog {
 
@@ -15,7 +17,9 @@ class RandomChallengeDialog {
         fun show(
             context: Context,
             challengesViewModel: ChallengesViewModel,
-            pokemonsViewModel: PokemonsViewModel
+            pokemonsViewModel: PokemonsViewModel,
+            lifecycleOwner: LifecycleOwner,
+            showElementsCallback: () -> Unit,
         ) {
             val inflater = LayoutInflater.from(context)
             val binding = ShowChallengeDialogBinding.inflate(inflater)
@@ -25,19 +29,27 @@ class RandomChallengeDialog {
             alertDialog.setCancelable(false)
             alertDialog.setView(binding.root)
 
+            challengesViewModel.getChallengesList()
+            challengesViewModel.challengesList.observe(lifecycleOwner) { lista ->
+                if (lista.isNotEmpty()) {
+                    val randomIndex = Random.nextInt(lista.size)
+                    val challenge = lista[randomIndex]
+                    binding.tvChallenge.text = challenge.description
+                }
+            }
+
             pokemonsViewModel.getPokemons()
-            (context as? LifecycleOwner)?.let { lifecycleOwner ->
-                pokemonsViewModel.getPokemons()
-                pokemonsViewModel.pokemonsList.observe(lifecycleOwner) { lista ->
-                    if (lista.size > 2) {
-                        val pokemon = lista[2]
-                        Glide.with(binding.root.context).load(pokemon.img).into(binding.ivPokemon)
-                    }
+            pokemonsViewModel.pokemonsList.observe(lifecycleOwner) { lista ->
+                if (lista.isNotEmpty()) {
+                    val randomIndex = Random.nextInt(lista.size)
+                    val pokemon = lista[randomIndex]
+                    Glide.with(binding.root.context).load(pokemon.img).into(binding.ivPokemon)
                 }
             }
 
             binding.btnCerrar.setOnClickListener {
                 alertDialog.dismiss()
+                showElementsCallback()
             }
             alertDialog.show()
         }
