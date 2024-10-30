@@ -13,8 +13,13 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.spin_bottle.model.Challenge
+import com.example.spin_bottle.view.dialog.RandomChallengeDialog
+import com.example.spin_bottle.viewmodel.ChallengesViewModel
+import com.example.spin_bottle.viewmodel.PokemonsViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.spin_bottle.viewmodel.AudioViewModel
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
@@ -26,6 +31,10 @@ class HomeFragment : Fragment() {
     private lateinit var binding: HomeFragmentBinding
     private lateinit var audioViewModel: AudioViewModel
     private var currentAngle = 0f
+    private var isAudioOn = true
+    private lateinit var mediaPlayer: MediaPlayer
+    private val challengeViewModel: ChallengesViewModel by viewModels()
+    private val pokemonViewModel: PokemonsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,8 +133,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animator) {
-                showElements()
-
+                showChallenge()
             }
 
             override fun onAnimationCancel(animation: Animator) {
@@ -179,6 +187,13 @@ class HomeFragment : Fragment() {
             }
         }
         timer.start()
+    }
+
+    private fun showChallenge(){
+        val showElementsCallback: () -> Unit = {
+            showElements()
+        }
+        RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel, viewLifecycleOwner, showElementsCallback)
     }
 
     private fun showElements(){

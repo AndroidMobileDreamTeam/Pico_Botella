@@ -20,10 +20,12 @@
     <fragment
         android:id="@+id/challengesFragment"
         android:name="com.example.spin_bottle.view.fragment.ChallengesFragment"
-        android:label="ChallengesFragment" />
+        android:label="ChallengesFragment"
+        tools:layout="@layout/fragment_challenges"/>
 
     <fragment
         android:id="@+id/instruccionesFragment"
         android:name="com.example.spin_bottle.view.fragment.InstruccionesFragment"
-        android:label="InstruccionesFragment" />
+        android:label="InstruccionesFragment"
+        tools:layout="@layout/fragment_instrucciones"/>
 </navigation>
