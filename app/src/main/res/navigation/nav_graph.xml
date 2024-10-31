@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.spin_bottle.view.fragment.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_challengesFragment"
+            app:destination="@id/challengesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_instruccionesFragment"
+            app:destination="@id/instruccionesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/challengesFragment"
+        android:name="com.example.spin_bottle.view.fragment.ChallengesFragment"
+        android:label="ChallengesFragment"
+        tools:layout="@layout/fragment_challenges">
+        <action
+            android:id="@+id/action_challengesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/instruccionesFragment"
+        android:name="com.example.spin_bottle.view.fragment.InstruccionesFragment"
+        android:label="InstruccionesFragment"
+        tools:layout="@layout/fragment_instrucciones">
+        <action
+            android:id="@+id/action_instruccionesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+</navigation>
