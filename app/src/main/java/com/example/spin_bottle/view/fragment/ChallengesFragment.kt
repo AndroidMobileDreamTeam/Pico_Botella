@@ -13,6 +13,7 @@ import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.view.adapter.ChallengeAdapter
 import com.example.spin_bottle.view.dialog.ChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
+import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.FragmentChallengesBinding
 
 class ChallengesFragment : Fragment() {
@@ -30,6 +31,7 @@ class ChallengesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupToolBar()
         controllerFCB()
         observerViewModel()
     }
@@ -44,6 +46,7 @@ class ChallengesFragment : Fragment() {
             challengeDialog.show()
         }
     }
+
 
     private fun observerViewModel() {
         observerChallengesList()
@@ -69,4 +72,17 @@ class ChallengesFragment : Fragment() {
             bindingFCB.progress.isVisible = status
         }
     }
+
+    private fun setupToolBar(){
+        bindingFCB.contentToolbar.toolbarTitle.text = getString(R.string.challenge_title)
+        val button = bindingFCB.contentToolbar.toolbarBackIcon
+        button.setOnClickListener {
+            returnToHome()
+        }
+    }
+
+    private fun returnToHome() {
+        findNavController().navigate(R.id.action_challengesFragment_to_homeFragment)
+    }
+
 }

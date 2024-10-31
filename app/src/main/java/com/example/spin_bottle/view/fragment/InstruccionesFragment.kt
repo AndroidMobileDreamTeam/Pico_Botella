@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.FragmentInstruccionesBinding
 
@@ -15,7 +16,7 @@ class InstruccionesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentInstruccionesBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
@@ -28,6 +29,14 @@ class InstruccionesFragment : Fragment() {
 
     private fun setupToolBar(){
         binding.contentToolbar.toolbarTitle.text = getString(R.string.reglas_title)
+        val button = binding.contentToolbar.toolbarBackIcon
+        button.setOnClickListener {
+            returnToHome()
+    }
+    }
+
+    private fun returnToHome() {
+        findNavController().navigate(R.id.action_instruccionesFragment_to_homeFragment)
     }
 
 }

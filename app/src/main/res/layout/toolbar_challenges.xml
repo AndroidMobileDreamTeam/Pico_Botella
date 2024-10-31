@@ -9,7 +9,7 @@
         tools:context=".MainActivity">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_chalenges"
+            android:id="@+id/default_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/gray">
@@ -24,7 +24,7 @@
                 android:layout_gravity="start|center_vertical"
                 android:layout_marginStart="16dp"
 
-                android:contentDescription="BackButton"
+                android:contentDescription="@string/backbutton"
 
                 app:tint="@color/orange1" />
 
@@ -32,7 +32,7 @@
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Retos"
+                android:text=""
                 android:textColor="@color/orange1"
                 android:textSize="25sp"
                 android:layout_gravity="center"
