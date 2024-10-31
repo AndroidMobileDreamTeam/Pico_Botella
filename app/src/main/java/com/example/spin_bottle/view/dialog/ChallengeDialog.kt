@@ -2,8 +2,12 @@ package com.example.spin_bottle.view.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Typeface
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -75,7 +79,11 @@ class ChallengeDialog(
     fun showStandard() {
         val builder = AlertDialog.Builder(context)
         builder.setCancelable(false)
-        builder.setTitle(context.getString(R.string.dialog_delete_text))
+
+        val title = SpannableString(context.getString(R.string.dialog_delete_text))
+        title.setSpan(StyleSpan(Typeface.BOLD), 0, title.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        builder.setTitle(title)
             .setMessage(challengeToEdit?.description)
             .setPositiveButton(context.getString(R.string.si)) { dialog, _ ->
                 val challenge = challengeToEdit
