@@ -1,45 +1,29 @@
 package com.example.spin_bottle.view.viewholder
 
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spin_bottle.model.Challenge
-import com.example.spin_bottle.view.dialog.ChallengeDialog
-import com.example.spin_bottle.viewmodel.ChallengesViewModel
+import com.example.spin_bottle.view.adapter.ChallengeActionListener
 import com.example.spin_bottle_app.databinding.ItemChallengesBinding
 
 class ChallengeViewHolder(
-    binding: ItemChallengesBinding, val navController: NavController,
-    private val challengesViewModel: ChallengesViewModel
+    private val binding: ItemChallengesBinding,
+    private val listener: ChallengeActionListener
 ) :
     RecyclerView.ViewHolder(binding.root) {
-    private val bindingItem = binding
-
 
     fun setItemChallenge(challenge: Challenge) {
-        bindingItem.challenge.text = challenge.description
-
-        controllerICB(challenge)
+        binding.challenge.text = challenge.description
     }
 
-    private fun controllerICB(challenge: Challenge) {
-        val onEditCallback: (Challenge) -> Unit = { auxChallenge ->
-            challengesViewModel.updateChallenge(auxChallenge)
-        }
-        val onDeleteCallback: (Challenge) -> Unit = { auxChallenge ->
-            challengesViewModel.deleteChallenge(auxChallenge)
-        }
-
-        bindingItem.editChallengeButton.setOnClickListener {
-            val challengeDialog =
-                ChallengeDialog(bindingItem.root.context, challenge, onEditCallback)
-            challengeDialog.show()
-        }
-
-        bindingItem.deleteChallengeButton.setOnClickListener {
-            val challengeDialog =
-                ChallengeDialog(bindingItem.root.context, challenge, onDeleteCallback)
-            challengeDialog.showStandart()
+    fun setOnDeleteClickListener(challenge: Challenge) {
+        binding.deleteChallengeButton.setOnClickListener {
+            listener.onDeleteChallenge(challenge)
         }
     }
 
+    fun setOnEditClickListener(challenge: Challenge) {
+        binding.editChallengeButton.setOnClickListener {
+            listener.onEditChallenge(challenge)
+        }
+    }
 }

@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spin_bottle.model.Challenge
+import com.example.spin_bottle.view.adapter.ChallengeActionListener
 import com.example.spin_bottle.view.adapter.ChallengeAdapter
 import com.example.spin_bottle.view.dialog.ChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.FragmentChallengesBinding
 
-class ChallengesFragment : Fragment() {
+class ChallengesFragment : Fragment(), ChallengeActionListener {
     private lateinit var bindingFCB: FragmentChallengesBinding
     private val challengeViewModel: ChallengesViewModel by viewModels()
 
@@ -32,25 +32,13 @@ class ChallengesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolBar()
-        controllerFCB()
+        onCreateChallenge()
         observerViewModel()
     }
 
-    private fun controllerFCB() {
-        val onSaveCallback: (Challenge) -> Unit = { challenge ->
-            challengeViewModel.saveChallenge(challenge)
-        }
-
-        bindingFCB.addChallengeBtn.setOnClickListener {
-            val challengeDialog = ChallengeDialog(requireContext(), null, onSaveCallback)
-            challengeDialog.show()
-        }
-    }
-
-
     private fun observerViewModel() {
+        observerProgress()
         observerChallengesList()
-        // observerProgress()
     }
 
     private fun observerChallengesList() {
@@ -61,7 +49,7 @@ class ChallengesFragment : Fragment() {
 
             recycler.layoutManager = layoutManager
 
-            val adapter = ChallengeAdapter(challengesList, findNavController(), challengeViewModel)
+            val adapter = ChallengeAdapter(challengesList, this)
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
         }
@@ -71,6 +59,29 @@ class ChallengesFragment : Fragment() {
         challengeViewModel.progressState.observe(viewLifecycleOwner) { status ->
             bindingFCB.progress.isVisible = status
         }
+    }
+
+    override fun onCreateChallenge() {
+        bindingFCB.addChallengeBtn.setOnClickListener {
+            val dialog = ChallengeDialog(requireContext(), null) { newChallenge ->
+                challengeViewModel.saveChallenge(newChallenge)
+            }
+            dialog.show()
+        }
+    }
+
+    override fun onEditChallenge(challenge: Challenge) {
+        val dialog = ChallengeDialog(requireContext(), challenge) { updatedChallenge ->
+            challengeViewModel.updateChallenge(updatedChallenge)
+        }
+        dialog.show()
+    }
+
+    override fun onDeleteChallenge(challenge: Challenge) {
+        val dialog = ChallengeDialog(requireContext(), challenge) {
+            challengeViewModel.deleteChallenge(challenge)
+        }
+        dialog.showStandard()
     }
 
     private fun setupToolBar(){

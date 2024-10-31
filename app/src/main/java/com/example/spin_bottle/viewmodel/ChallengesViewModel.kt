@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.spin_bottle.model.Challenge
-import com.example.spin_bottle.model.Pokemon
 import com.example.spin_bottle.repository.ChallengeRepository
 import kotlinx.coroutines.launch
 
