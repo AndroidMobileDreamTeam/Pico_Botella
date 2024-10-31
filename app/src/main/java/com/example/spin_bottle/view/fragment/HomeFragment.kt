@@ -105,7 +105,7 @@ class HomeFragment : Fragment() {
         val animator = ObjectAnimator.ofFloat(bottle, "rotation", currentAngle, randomAngle)
 
         // Establecer la duración de la animación
-        animator.duration = 4000 // 3 segundos, por ejemplo
+        animator.duration = 5000 // 3 segundos, por ejemplo
 
         // Añadir un interpolador para hacer la animación más suave
         animator.interpolator = AccelerateDecelerateInterpolator()
@@ -116,7 +116,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animator) {
-                showChallenge()
+                counterTextAnimation()
             }
 
             override fun onAnimationCancel(animation: Animator) {}
@@ -157,7 +157,7 @@ class HomeFragment : Fragment() {
     private fun counterTextAnimation() {
         val txtV = binding.counterText
 
-        val timer = object : CountDownTimer(4000, 1000) {
+        val timer = object : CountDownTimer(3500, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 val secondsRemaining = millisUntilFinished / 1000
@@ -166,6 +166,7 @@ class HomeFragment : Fragment() {
 
             override fun onFinish() {
                 txtV.text = ""
+                showChallenge()
             }
         }
         timer.start()
@@ -228,7 +229,6 @@ class HomeFragment : Fragment() {
             hideElements()
             button.clearAnimation()
             textV.clearAnimation()
-            counterTextAnimation()
             bottleAnimation()
         }
     }
