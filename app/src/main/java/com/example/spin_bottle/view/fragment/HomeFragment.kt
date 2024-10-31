@@ -117,7 +117,6 @@ class HomeFragment : Fragment() {
 
             override fun onAnimationEnd(animation: Animator) {
                 showChallenge()
-                homeSound()
             }
 
             override fun onAnimationCancel(animation: Animator) {}
@@ -188,7 +187,11 @@ class HomeFragment : Fragment() {
         val showElementsCallback: () -> Unit = {
             showElements()
         }
-        RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel, viewLifecycleOwner, showElementsCallback)
+
+        val homeSoundCallback: () -> Unit = {
+            homeSound()
+        }
+        RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel, viewLifecycleOwner, showElementsCallback, homeSoundCallback)
     }
 
 
@@ -222,9 +225,9 @@ class HomeFragment : Fragment() {
         val textV = binding.textvPressMe
 
         button.setOnClickListener {
+            hideElements()
             button.clearAnimation()
             textV.clearAnimation()
-            hideElements()
             counterTextAnimation()
             bottleAnimation()
         }
@@ -280,5 +283,6 @@ class HomeFragment : Fragment() {
         startTextViewAnimation()
         buttonStartAnimation()
     }
+
 }
 
