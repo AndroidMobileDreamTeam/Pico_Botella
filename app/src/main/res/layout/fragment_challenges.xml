@@ -64,7 +64,7 @@
             android:id="@+id/addChallengeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/addchallengebutton"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/downTo98x100"
