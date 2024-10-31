@@ -15,7 +15,6 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.view.dialog.RandomChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle.viewmodel.PokemonsViewModel
@@ -31,8 +30,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: HomeFragmentBinding
     private lateinit var audioViewModel: AudioViewModel
     private var currentAngle = 0f
-    private var isAudioOn = true
-    private lateinit var mediaPlayer: MediaPlayer
     private val challengeViewModel: ChallengesViewModel by viewModels()
     private val pokemonViewModel: PokemonsViewModel by viewModels()
 
@@ -50,21 +47,14 @@ class HomeFragment : Fragment() {
             updateAudioState(isAudioOn)
         }
 
-
-        //mediaPlayer()
-        rateButton()
-        volumeButton()
-        instructionsButton()
-        challengesButton()
-        shareButton()
-        startTextViewAnimation()
-        buttonStartAnimation()
+        toolbarButtons()
+        animatedComponents()
         buttonStartClick()
 
         return binding.root
     }
 
-
+    //Funciones del MediaPlayer
     private fun updateAudioState(isAudioOn: Boolean) {
         if (isAudioOn) {
             binding.customToolbar.btnVolume.setImageResource(R.drawable.icono_volume_on)
@@ -77,14 +67,12 @@ class HomeFragment : Fragment() {
         audioViewModel.toggleAudio()
     }
 
-
     private fun volumeButton(){
         val btnVolume = binding.customToolbar.btnVolume
         btnVolume.setOnClickListener {
             toggleAudio()
         }
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -100,24 +88,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // No se libera el MediaPlayer aquí; se gestiona en el ViewModel
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         audioViewModel.mediaPlayer?.release() // Libera el MediaPlayer al destruir la actividad
     }
 
 
+    //Animación de la botella
     private fun bottleAnimation() {
         val bottle = binding.bottle
 
         // Generar un ángulo aleatorio
         val randomAngle = currentAngle + Random.nextInt(2000, 3600)
-
-
 
         // Crear la animación de rotación
         val animator = ObjectAnimator.ofFloat(bottle, "rotation", currentAngle, randomAngle)
@@ -130,17 +112,16 @@ class HomeFragment : Fragment() {
 
         animator.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
+                spinSound()
             }
 
             override fun onAnimationEnd(animation: Animator) {
                 showChallenge()
+                homeSound()
             }
 
-            override fun onAnimationCancel(animation: Animator) {
-            }
-
-            override fun onAnimationRepeat(animation: Animator) {
-            }
+            override fun onAnimationCancel(animation: Animator) {}
+            override fun onAnimationRepeat(animation: Animator) {}
         })
 
         // Iniciar la animación
@@ -148,6 +129,8 @@ class HomeFragment : Fragment() {
         currentAngle = randomAngle
     }
 
+
+    //Animaciones de los elementos
     private fun startTextViewAnimation() {
         val textV = binding.textvPressMe
         val animation = AnimationUtils.loadAnimation(requireContext(), R.anim.grow)
@@ -189,6 +172,18 @@ class HomeFragment : Fragment() {
         timer.start()
     }
 
+
+    //Sonidos
+    private fun spinSound() {
+        audioViewModel.spinSound(requireContext())
+    }
+
+    private fun homeSound() {
+        audioViewModel.homeSound(requireContext())
+    }
+
+
+    //Mostrar reto aleatorio
     private fun showChallenge(){
         val showElementsCallback: () -> Unit = {
             showElements()
@@ -196,6 +191,8 @@ class HomeFragment : Fragment() {
         RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel, viewLifecycleOwner, showElementsCallback)
     }
 
+
+    //Mostrar y ocultar elementos
     private fun showElements(){
         val button = binding.btnStart
         val textV = binding.textvPressMe
@@ -218,6 +215,8 @@ class HomeFragment : Fragment() {
         toolbar.visibility = View.INVISIBLE
     }
 
+
+    //Botón de inicio de giro
     private fun buttonStartClick() {
         val button = binding.btnStart
         val textV = binding.textvPressMe
@@ -231,6 +230,8 @@ class HomeFragment : Fragment() {
         }
     }
 
+
+    //Botones de la barra de herramientas
     private fun rateButton(){
         val btnRate = binding.root.findViewById<ImageButton>(R.id.btn_rate)
         btnRate.setOnClickListener {
@@ -241,7 +242,6 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
     }
-
 
     private fun instructionsButton(){
         val btnInstrucciones = binding.customToolbar.btnInstructions
@@ -262,6 +262,23 @@ class HomeFragment : Fragment() {
         btnShare.setOnClickListener {
             // AQUI VA EL CODIGO PARA COMPARTIR LA APP --> JUAN
         }
+    }
+
+
+    //Funciones de la barra de herramientas
+    private fun toolbarButtons(){
+        rateButton()
+        volumeButton()
+        instructionsButton()
+        challengesButton()
+        shareButton()
+    }
+
+
+    //Elementos animados
+    private fun animatedComponents(){
+        startTextViewAnimation()
+        buttonStartAnimation()
     }
 }
 
