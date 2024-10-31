@@ -18,7 +18,7 @@ class ChallengeRepository(val context: Context) {
 
     suspend fun getChallengesList():MutableList<Challenge>{
         return withContext(Dispatchers.IO){
-            challengeDao.getChallengesList()
+            challengeDao.getChallengesList().asReversed()
         }
     }
 
