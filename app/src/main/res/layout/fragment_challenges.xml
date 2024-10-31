@@ -15,21 +15,21 @@
         tools:context=".view.fragment.ChallengesFragment">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/abajoA8x100"
+            android:id="@+id/downTo8x100"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.08"/>
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/abajoA98x100"
+            android:id="@+id/downTo98x100"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.98"/>
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/derechaA96x100"
+            android:id="@+id/rightTo96x100"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -55,7 +55,7 @@
 
             tools:listitem="@layout/item_challenges"
 
-            app:layout_constraintTop_toBottomOf="@+id/abajoA8x100"
+            app:layout_constraintTop_toBottomOf="@+id/downTo8x100"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -65,10 +65,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:contentDescription="AddChallengeButton"
+            android:contentDescription="@string/addchallengebutton"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@id/abajoA98x100"
-            app:layout_constraintRight_toRightOf="@id/derechaA96x100"
+            app:layout_constraintBottom_toTopOf="@id/downTo98x100"
+            app:layout_constraintRight_toRightOf="@id/rightTo96x100"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_circle2" />
