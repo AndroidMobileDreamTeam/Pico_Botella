@@ -1,11 +1,12 @@
 <resources>
+    <!-- Home Fragment -->
     <string name="app_name">Pico Botella</string>
     <string name="bottle_iv">BottleImageView</string>
     <string name="txt_presioname">Presióname</string>
     <string name="start_btn_description">BotonGiro</string>
     <string name="cerrar">Cerrar</string>
 
-    <!-- Strings de la toolbar -->
+    <!-- Toolbar -->
     <string name="toolbar_rate">Califica la App</string>
     <string name="toolbar_volume">Control Sonido</string>
     <string name="toolbar_instructions">Instrucciones</string>
@@ -34,5 +35,14 @@
     <string name="dialog_delete_text">¿Deseas eliminar el siguiente reto?:</string>
     <string name="si">SI</string>
     <string name="no">NO</string>
+    <string name="addchallengebutton">AddChallengeButton</string>
+
+    <!-- Challenges Item -->
+    <string name="deletechallengebutton">DeleteChallengeButton</string>
+    <string name="editchallengebutton">EditChallengeButton</string>
+    <string name="fireimage">FireImage</string>
+
+    <!-- Challenges Toolbar -->
     <string name="backbutton">BackButton</string>
+
 </resources>

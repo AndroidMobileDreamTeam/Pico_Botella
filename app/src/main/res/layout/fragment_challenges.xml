@@ -65,7 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:contentDescription="AddChallengeButton"
+            android:contentDescription="@string/addchallengebutton"
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/abajoA98x100"
             app:layout_constraintRight_toRightOf="@id/derechaA96x100"
