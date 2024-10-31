@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleOwner
 import com.bumptech.glide.Glide
-import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle.viewmodel.PokemonsViewModel
 import com.example.spin_bottle_app.databinding.ShowChallengeDialogBinding
@@ -20,6 +19,7 @@ class RandomChallengeDialog {
             pokemonsViewModel: PokemonsViewModel,
             lifecycleOwner: LifecycleOwner,
             showElementsCallback: () -> Unit,
+            homeSoundCallback: () -> Unit,
         ) {
             val inflater = LayoutInflater.from(context)
             val binding = ShowChallengeDialogBinding.inflate(inflater)
@@ -50,6 +50,7 @@ class RandomChallengeDialog {
             binding.btnCerrar.setOnClickListener {
                 alertDialog.dismiss()
                 showElementsCallback()
+                homeSoundCallback()
             }
             alertDialog.show()
         }
