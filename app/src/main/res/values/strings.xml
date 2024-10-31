@@ -29,7 +29,7 @@
     <!-- Challenges Fragment -->
     <string name="save">Guardar</string>
     <string name="cancel">Cancelar</string>
-    <string name="dialog_add_placeholder">Escriba un reto</string>
+    <string name="dialog_add_placeholder">Escriba el reto</string>
     <string name="dialog_add_text">Agregar reto</string>
     <string name="dialog_edit_text">Editar reto</string>
     <string name="dialog_delete_text">¿Deseas eliminar el siguiente reto?:</string>
