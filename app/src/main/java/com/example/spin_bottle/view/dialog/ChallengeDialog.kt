@@ -5,7 +5,6 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.spin_bottle.model.Challenge
@@ -73,7 +72,7 @@ class ChallengeDialog(
         dialog.show()
     }
 
-    fun showStandart() {
+    fun showStandard() {
         val builder = AlertDialog.Builder(context)
         builder.setCancelable(false)
         builder.setTitle(context.getString(R.string.dialog_delete_text))
