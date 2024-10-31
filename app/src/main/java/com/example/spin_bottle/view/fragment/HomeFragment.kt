@@ -263,7 +263,14 @@ class HomeFragment : Fragment() {
     private fun shareButton() {
         val btnShare = binding.customToolbar.btnShare
         btnShare.setOnClickListener {
-            // AQUI VA EL CODIGO PARA COMPARTIR LA APP --> JUAN
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "App Pico botella\n Solo los valientes lo juegan !!\n https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
     }
 
