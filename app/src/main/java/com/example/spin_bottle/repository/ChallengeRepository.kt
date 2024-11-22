@@ -1,14 +1,15 @@
 package com.example.spin_bottle.repository
 
-import android.content.Context
-import com.example.spin_bottle.data.ChallengeDB
 import com.example.spin_bottle.data.ChallengeDao
 import com.example.spin_bottle.model.Challenge
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class ChallengeRepository(val context: Context) {
-    private var challengeDao: ChallengeDao = ChallengeDB.getDatabase(context).challengeDao()
+
+class ChallengeRepository @Inject constructor(
+    private val challengeDao: ChallengeDao
+) {
 
     suspend fun saveChallenge(challenge: Challenge) {
         withContext(Dispatchers.IO) {
