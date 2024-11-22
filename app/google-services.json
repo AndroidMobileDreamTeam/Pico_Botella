@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257779689839",
+    "project_id": "spin-the-bottle-fbf1b",
+    "storage_bucket": "spin-the-bottle-fbf1b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257779689839:android:45ded89c8203c6fcb6609a",
+        "android_client_info": {
+          "package_name": "com.example.spin_bottle_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPwyWjaZWPhCYu2cYuardX9kPg2mqp-WM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
