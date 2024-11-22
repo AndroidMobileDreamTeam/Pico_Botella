@@ -11,7 +11,7 @@ import com.example.spin_bottle.utils.Constants.NAME_BD
 abstract class ChallengeDB : RoomDatabase() {
     abstract fun challengeDao(): ChallengeDao
 
-    companion object{
+    companion object {
         fun getDatabase(context: Context): ChallengeDB {
             return Room.databaseBuilder(
                 context.applicationContext,

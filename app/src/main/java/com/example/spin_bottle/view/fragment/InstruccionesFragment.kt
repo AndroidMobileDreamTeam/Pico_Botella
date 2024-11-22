@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.FragmentInstruccionesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InstruccionesFragment : Fragment() {
 
     private lateinit var binding: FragmentInstruccionesBinding
@@ -27,12 +29,12 @@ class InstruccionesFragment : Fragment() {
         setupToolBar()
     }
 
-    private fun setupToolBar(){
+    private fun setupToolBar() {
         binding.contentToolbar.toolbarTitle.text = getString(R.string.reglas_title)
         val button = binding.contentToolbar.toolbarBackIcon
         button.setOnClickListener {
             returnToHome()
-    }
+        }
     }
 
     private fun returnToHome() {

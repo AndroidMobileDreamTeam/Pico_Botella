@@ -12,7 +12,7 @@ import kotlin.random.Random
 
 class RandomChallengeDialog {
 
-    companion object{
+    companion object {
         fun show(
             context: Context,
             challengesViewModel: ChallengesViewModel,

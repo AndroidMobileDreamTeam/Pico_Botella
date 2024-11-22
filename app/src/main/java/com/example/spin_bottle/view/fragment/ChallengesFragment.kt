@@ -16,7 +16,9 @@ import com.example.spin_bottle.view.dialog.ChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.FragmentChallengesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ChallengesFragment : Fragment(), ChallengeActionListener {
     private lateinit var bindingFCB: FragmentChallengesBinding
     private val challengeViewModel: ChallengesViewModel by viewModels()
@@ -85,7 +87,7 @@ class ChallengesFragment : Fragment(), ChallengeActionListener {
         dialog.showStandard()
     }
 
-    private fun setupToolBar(){
+    private fun setupToolBar() {
         bindingFCB.contentToolbar.toolbarTitle.text = getString(R.string.challenge_title)
         val button = bindingFCB.contentToolbar.toolbarBackIcon
         button.setOnClickListener {

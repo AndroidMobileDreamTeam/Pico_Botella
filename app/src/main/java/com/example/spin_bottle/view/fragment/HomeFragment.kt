@@ -22,9 +22,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.spin_bottle.viewmodel.AudioViewModel
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
@@ -67,7 +68,7 @@ class HomeFragment : Fragment() {
         audioViewModel.toggleAudio()
     }
 
-    private fun volumeButton(){
+    private fun volumeButton() {
         val btnVolume = binding.customToolbar.btnVolume
         btnVolume.setOnClickListener {
             toggleAudio()
@@ -184,7 +185,7 @@ class HomeFragment : Fragment() {
 
 
     //Mostrar reto aleatorio
-    private fun showChallenge(){
+    private fun showChallenge() {
         val showElementsCallback: () -> Unit = {
             showElements()
         }
@@ -192,12 +193,19 @@ class HomeFragment : Fragment() {
         val homeSoundCallback: () -> Unit = {
             homeSound()
         }
-        RandomChallengeDialog.show(requireContext(), challengeViewModel, pokemonViewModel, viewLifecycleOwner, showElementsCallback, homeSoundCallback)
+        RandomChallengeDialog.show(
+            requireContext(),
+            challengeViewModel,
+            pokemonViewModel,
+            viewLifecycleOwner,
+            showElementsCallback,
+            homeSoundCallback
+        )
     }
 
 
     //Mostrar y ocultar elementos
-    private fun showElements(){
+    private fun showElements() {
         val button = binding.btnStart
         val textV = binding.textvPressMe
         val toolbar = binding.customToolbar.toolbar
@@ -208,7 +216,7 @@ class HomeFragment : Fragment() {
         buttonStartAnimation()
     }
 
-    private fun hideElements(){
+    private fun hideElements() {
         val button = binding.btnStart
         val textV = binding.textvPressMe
         val toolbar = binding.customToolbar.toolbar
@@ -235,25 +243,26 @@ class HomeFragment : Fragment() {
 
 
     //Botones de la barra de herramientas
-    private fun rateButton(){
+    private fun rateButton() {
         val btnRate = binding.root.findViewById<ImageButton>(R.id.btn_rate)
         btnRate.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
+                data =
+                    Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
                 setPackage("com.android.vending")
             }
             startActivity(intent)
         }
     }
 
-    private fun instructionsButton(){
+    private fun instructionsButton() {
         val btnInstrucciones = binding.customToolbar.btnInstructions
         btnInstrucciones.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_instruccionesFragment)
         }
     }
 
-    private fun challengesButton(){
+    private fun challengesButton() {
         val btnChallenges = binding.customToolbar.btnChallenges
         btnChallenges.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_challengesFragment)
@@ -265,7 +274,10 @@ class HomeFragment : Fragment() {
         btnShare.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "App Pico botella\n Solo los valientes lo juegan !!\n https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    "App Pico botella\n Solo los valientes lo juegan !!\n https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es"
+                )
                 type = "text/plain"
             }
 
@@ -276,7 +288,7 @@ class HomeFragment : Fragment() {
 
 
     //Funciones de la barra de herramientas
-    private fun toolbarButtons(){
+    private fun toolbarButtons() {
         rateButton()
         volumeButton()
         instructionsButton()
@@ -286,7 +298,7 @@ class HomeFragment : Fragment() {
 
 
     //Elementos animados
-    private fun animatedComponents(){
+    private fun animatedComponents() {
         startTextViewAnimation()
         buttonStartAnimation()
     }

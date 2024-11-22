@@ -89,7 +89,7 @@ class ChallengeViewHolder(
             Handler(Looper.getMainLooper()).postDelayed({
                 binding.editChallengeButton.startAnimation(scaleDown)
             }, 85)  // Espera a que la primera animación termine
-            
+
             Handler(Looper.getMainLooper()).postDelayed({
                 listener.onEditChallenge(challenge)
             }, 170)

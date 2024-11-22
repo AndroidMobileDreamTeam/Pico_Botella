@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.spin_bottle_app.R
 
-class AudioViewModel: ViewModel(){
+class AudioViewModel : ViewModel() {
     private val _isAudioOn = MutableLiveData(true)
     val isAudioOn: LiveData<Boolean> get() = _isAudioOn
 
@@ -25,7 +25,7 @@ class AudioViewModel: ViewModel(){
 
     fun toggleAudio() {
         _isAudioOn.value = !(_isAudioOn.value ?: true)
-        if(_isAudioOn.value == true) {
+        if (_isAudioOn.value == true) {
             mediaPlayer?.start()
         } else {
             mediaPlayer?.pause()

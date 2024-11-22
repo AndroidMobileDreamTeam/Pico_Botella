@@ -19,33 +19,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.08"/>
+            app:layout_constraintGuide_percent="0.08" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/downTo98x100"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.98"/>
+            app:layout_constraintGuide_percent="0.98" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/rightTo96x100"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.96"/>
+            app:layout_constraintGuide_percent="0.96" />
 
-            <androidx.drawerlayout.widget.DrawerLayout
-                android:id="@+id/drawer_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".view.fragment.ChallengesFragment"
-                tools:openDrawer="start">
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.fragment.ChallengesFragment"
+            tools:openDrawer="start">
 
-                <include
-                    android:id="@+id/contentToolbar"
-                    layout="@layout/toolbar_challenges"/>
-            </androidx.drawerlayout.widget.DrawerLayout>
+            <include
+                android:id="@+id/contentToolbar"
+                layout="@layout/toolbar_challenges" />
+        </androidx.drawerlayout.widget.DrawerLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -58,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@+id/downTo8x100"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageButton
             android:id="@+id/addChallengeBtn"
@@ -74,14 +74,14 @@
             app:srcCompat="@drawable/ic_circle2" />
 
         <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
