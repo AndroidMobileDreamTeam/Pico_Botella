@@ -38,7 +38,13 @@ class ChallengesViewModel @Inject constructor(
         viewModelScope.launch {
             _progressState.value = true
             try {
-                _challengesList.value = challengeRepository.getChallengesList()
+                val result = challengeRepository.getChallengesList()
+
+                if (result.isSuccess) {
+                    _challengesList.value = result.getOrElse { mutableListOf() }
+                } else {
+                    _challengesList.value = mutableListOf()
+                }
                 _progressState.value = false
             } catch (e: Exception) {
                 _progressState.value = false
