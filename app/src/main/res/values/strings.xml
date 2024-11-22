@@ -12,6 +12,7 @@
     <string name="toolbar_instructions">Instrucciones</string>
     <string name="toolbar_add">Agregar retos</string>
     <string name="toolbar_share">Compartir la app</string>
+    <string name="toolbar_logout">Cerrar sesión</string>
 
     <!-- Instrucciones Fragment -->
     <string name="como_title">¿Cómo se juega?</string>
