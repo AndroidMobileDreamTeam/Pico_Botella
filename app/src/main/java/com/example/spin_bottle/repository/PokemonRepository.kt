@@ -1,14 +1,14 @@
 package com.example.spin_bottle.repository
 
-import android.content.Context
 import com.example.spin_bottle.model.Pokemon
 import com.example.spin_bottle.webservice.ApiService
-import com.example.spin_bottle.webservice.ApiUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class PokemonRepository(val context: Context) {
-    private var apiService: ApiService = ApiUtils.getApiService()
+class PokemonRepository @Inject constructor(
+    private val apiService: ApiService
+) {
 
     suspend fun getPokemons(): MutableList<Pokemon> {
         return withContext(Dispatchers.IO) {

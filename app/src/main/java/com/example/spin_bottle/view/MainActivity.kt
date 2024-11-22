@@ -8,7 +8,9 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.spin_bottle_app.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     //import com.example.spin_bottle_app.databinding.ActivityMainBinding
     @SuppressLint("SourceLockedOrientationActivity")

@@ -22,9 +22,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.spin_bottle.viewmodel.AudioViewModel
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding

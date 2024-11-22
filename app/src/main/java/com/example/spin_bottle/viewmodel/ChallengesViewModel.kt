@@ -1,17 +1,19 @@
 package com.example.spin_bottle.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spin_bottle.model.Challenge
 import com.example.spin_bottle.repository.ChallengeRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ChallengesViewModel(application: Application) : AndroidViewModel(application) {
-    val context = getApplication<Application>()
-    private val challengeRepository = ChallengeRepository(context)
+@HiltViewModel
+class ChallengesViewModel @Inject constructor(
+    private val challengeRepository: ChallengeRepository
+) : ViewModel() {
 
     private val _challengesList = MutableLiveData<MutableList<Challenge>>()
     val challengesList: LiveData<MutableList<Challenge>> get() = _challengesList
