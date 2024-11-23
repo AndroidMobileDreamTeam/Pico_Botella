@@ -21,19 +21,6 @@ class ChallengesViewModel @Inject constructor(
     private val _progressState = MutableLiveData(false)
     val progressState: LiveData<Boolean> = _progressState
 
-    fun saveChallenge(challenge: Challenge) {
-        viewModelScope.launch {
-            _progressState.value = true
-            try {
-                challengeRepository.saveChallenge(challenge)
-                getChallengesList()
-                _progressState.value = false
-            } catch (e: Exception) {
-                _progressState.value = false
-            }
-        }
-    }
-
     fun getChallengesList() {
         viewModelScope.launch {
             _progressState.value = true
@@ -52,30 +39,12 @@ class ChallengesViewModel @Inject constructor(
         }
     }
 
-    fun deleteChallenge(challenge: Challenge) {
-        viewModelScope.launch {
-            _progressState.value = true
-            try {
-                challengeRepository.deleteChallenge(challenge)
-                getChallengesList()
-                _progressState.value = false
-            } catch (e: Exception) {
-                _progressState.value = false
-            }
+    fun saveChallenge(challenge: Challenge) {
+    }
 
-        }
+    fun deleteChallenge(challenge: Challenge) {
     }
 
     fun updateChallenge(challenge: Challenge) {
-        viewModelScope.launch {
-            _progressState.value = true
-            try {
-                challengeRepository.updateChallenge(challenge)
-                getChallengesList()
-                _progressState.value = false
-            } catch (e: Exception) {
-                _progressState.value = false
-            }
-        }
     }
 }

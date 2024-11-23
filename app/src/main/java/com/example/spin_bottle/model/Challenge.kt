@@ -7,5 +7,6 @@ import com.google.firebase.firestore.IgnoreExtraProperties
 data class Challenge(
     @DocumentId
     var id: String? = null,
-    var description: String? = ""
+    var description: String? = "",
+    var createdAt: Any? = null
 )
