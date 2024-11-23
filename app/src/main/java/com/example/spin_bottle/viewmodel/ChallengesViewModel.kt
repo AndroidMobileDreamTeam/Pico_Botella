@@ -21,55 +21,30 @@ class ChallengesViewModel @Inject constructor(
     private val _progressState = MutableLiveData(false)
     val progressState: LiveData<Boolean> = _progressState
 
-    fun saveChallenge(challenge: Challenge) {
-        viewModelScope.launch {
-            _progressState.value = true
-            try {
-                challengeRepository.saveChallenge(challenge)
-                getChallengesList()
-                _progressState.value = false
-            } catch (e: Exception) {
-                _progressState.value = false
-            }
-        }
-    }
-
     fun getChallengesList() {
         viewModelScope.launch {
             _progressState.value = true
             try {
-                _challengesList.value = challengeRepository.getChallengesList()
+                val result = challengeRepository.getChallengesList()
+
+                if (result.isSuccess) {
+                    _challengesList.value = result.getOrElse { mutableListOf() }
+                } else {
+                    _challengesList.value = mutableListOf()
+                }
                 _progressState.value = false
             } catch (e: Exception) {
                 _progressState.value = false
             }
         }
+    }
+
+    fun saveChallenge(challenge: Challenge) {
     }
 
     fun deleteChallenge(challenge: Challenge) {
-        viewModelScope.launch {
-            _progressState.value = true
-            try {
-                challengeRepository.deleteChallenge(challenge)
-                getChallengesList()
-                _progressState.value = false
-            } catch (e: Exception) {
-                _progressState.value = false
-            }
-
-        }
     }
 
     fun updateChallenge(challenge: Challenge) {
-        viewModelScope.launch {
-            _progressState.value = true
-            try {
-                challengeRepository.updateChallenge(challenge)
-                getChallengesList()
-                _progressState.value = false
-            } catch (e: Exception) {
-                _progressState.value = false
-            }
-        }
     }
 }

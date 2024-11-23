@@ -1,12 +1,12 @@
 package com.example.spin_bottle.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import java.io.Serializable
+import com.google.firebase.firestore.DocumentId
+import com.google.firebase.firestore.IgnoreExtraProperties
 
-@Entity
+@IgnoreExtraProperties
 data class Challenge(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val description: String,
-) : Serializable
+    @DocumentId
+    var id: String? = null,
+    var description: String? = "",
+    var createdAt: Any? = null
+)
