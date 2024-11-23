@@ -27,27 +27,12 @@ object Module {
             .build()
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideChallengeDB(@ApplicationContext context: Context): ChallengeDB {
-//        return Room.databaseBuilder(
-//            context,
-//            ChallengeDB::class.java,
-//            NAME_BD
-//        ).build()
-//    }
-
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
 
-//    @Singleton
-//    @Provides
-//    fun provideChallengeDao(challengeDB: ChallengeDB): ChallengeDao {
-//        return challengeDB.challengeDao()
-//    }
 
     @Provides
     @Singleton
