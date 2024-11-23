@@ -4,6 +4,8 @@ package com.example.spin_bottle.di
 //import com.example.spin_bottle.data.ChallengeDao
 import com.example.spin_bottle.utils.Constants.BASE_URL
 import com.example.spin_bottle.webservice.ApiService
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,5 +48,17 @@ object Module {
 //    fun provideChallengeDao(challengeDB: ChallengeDB): ChallengeDao {
 //        return challengeDB.challengeDao()
 //    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseFirestore(): FirebaseFirestore {
+        return FirebaseFirestore.getInstance()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth {
+        return FirebaseAuth.getInstance()
+    }
 
 }
