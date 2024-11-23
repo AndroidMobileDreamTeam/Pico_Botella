@@ -1,7 +1,5 @@
 package com.example.spin_bottle.di
 
-//import com.example.spin_bottle.data.ChallengeDB
-//import com.example.spin_bottle.data.ChallengeDao
 import com.example.spin_bottle.utils.Constants.BASE_URL
 import com.example.spin_bottle.webservice.ApiService
 import com.google.firebase.auth.FirebaseAuth
