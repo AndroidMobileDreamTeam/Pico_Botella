@@ -4,10 +4,13 @@ import android.content.Context
 import com.example.spin_bottle.model.Challenge
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class ChallengeRepository(val context: Context) {
-    private val firestore = FirebaseFirestore.getInstance()
+class ChallengeRepository @Inject constructor(
+    private val firestore: FirebaseFirestore
+) {
 
     private fun getCurrentUserId(): String? {
         return FirebaseAuth.getInstance().currentUser?.uid
