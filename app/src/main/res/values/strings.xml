@@ -1,4 +1,11 @@
 <resources>
+    <!-- Login -->
+    <string name="login_title">Pico Botella</string>
+    <string name="email_field">Email</string>
+    <string name="password_field">Password</string>
+    <string name="login_button">Login</string>
+    <string name="register_button">Registrarse</string>
+
     <!-- Home Fragment -->
     <string name="app_name">Pico Botella</string>
     <string name="bottle_iv">BottleImageView</string>
