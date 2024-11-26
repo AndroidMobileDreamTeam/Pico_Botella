@@ -122,8 +122,8 @@
     <View
         android:id="@+id/waves"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/waves_background"
+        android:layout_height="180dp"
+        android:background="@drawable/waves_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
