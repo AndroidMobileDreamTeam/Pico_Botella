@@ -4,7 +4,9 @@ import com.example.spin_bottle.model.Challenge
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ChallengeRepository @Inject constructor(
@@ -13,6 +15,25 @@ class ChallengeRepository @Inject constructor(
 
     private fun getCurrentUserId(): String? {
         return FirebaseAuth.getInstance().currentUser?.uid
+    }
+
+    suspend fun saveChallenge(challenge: Challenge): Result<Unit> {
+        val userId = getCurrentUserId()
+
+        return userId?.let {
+            try {
+                firestore
+                    .collection("users")
+                    .document(it)
+                    .collection("challenges")
+                    .add(challenge)
+                    .await()
+
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(Exception("Error saving challenge: ${e.message}"))
+            }
+        } ?: Result.failure(Exception("User not authenticated"))
     }
 
     suspend fun getChallengesList(): Result<MutableList<Challenge>> {

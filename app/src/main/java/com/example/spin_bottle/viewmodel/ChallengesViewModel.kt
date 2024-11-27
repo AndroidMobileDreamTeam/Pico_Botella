@@ -9,6 +9,7 @@ import com.example.spin_bottle.repository.ChallengeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.google.firebase.firestore.FieldValue
 
 @HiltViewModel
 class ChallengesViewModel @Inject constructor(
@@ -40,6 +41,17 @@ class ChallengesViewModel @Inject constructor(
     }
 
     fun saveChallenge(challenge: Challenge) {
+        viewModelScope.launch {
+            _progressState.value = true
+            try {
+                challenge.createdAt = FieldValue.serverTimestamp();
+                challengeRepository.saveChallenge(challenge)
+                getChallengesList()
+                _progressState.value = false
+            } catch (e: Exception) {
+                _progressState.value = false
+            }
+        }
     }
 
     fun deleteChallenge(challenge: Challenge) {
