@@ -4,9 +4,7 @@ import com.example.spin_bottle.model.Challenge
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ChallengeRepository @Inject constructor(
@@ -79,6 +77,7 @@ class ChallengeRepository @Inject constructor(
             } ?: Result.failure(Exception("Challenge ID is null"))
         } ?: Result.failure(Exception("User not authenticated"))
     }
+
     suspend fun getChallengesList(): Result<MutableList<Challenge>> {
         val userId = getCurrentUserId()
 
