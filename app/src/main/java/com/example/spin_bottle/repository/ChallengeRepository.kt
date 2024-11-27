@@ -15,6 +15,69 @@ class ChallengeRepository @Inject constructor(
         return FirebaseAuth.getInstance().currentUser?.uid
     }
 
+    suspend fun saveChallenge(challenge: Challenge): Result<Unit> {
+        val userId = getCurrentUserId()
+
+        return userId?.let {
+            try {
+                firestore
+                    .collection("users")
+                    .document(it)
+                    .collection("challenges")
+                    .add(challenge)
+                    .await()
+
+                Result.success(Unit)
+            } catch (e: Exception) {
+                Result.failure(Exception("Error saving challenge: ${e.message}"))
+            }
+        } ?: Result.failure(Exception("User not authenticated"))
+    }
+
+    suspend fun updateChallenge(challenge: Challenge): Result<Unit> {
+        val userId = getCurrentUserId()
+
+        return userId?.let {
+            challenge.id?.let { challengeId ->
+                try {
+                    firestore
+                        .collection("users")
+                        .document(it)
+                        .collection("challenges")
+                        .document(challengeId)
+                        .set(challenge)
+                        .await()
+
+                    Result.success(Unit)
+                } catch (e: Exception) {
+                    Result.failure(Exception("Error updating challenge: ${e.message}"))
+                }
+            } ?: Result.failure(Exception("Challenge ID is null"))
+        } ?: Result.failure(Exception("User not authenticated"))
+    }
+
+    suspend fun deleteChallenge(challenge: Challenge): Result<Unit> {
+        val userId = getCurrentUserId()
+
+        return userId?.let {
+            challenge.id?.let { challengeId ->
+                try {
+                    firestore
+                        .collection("users")
+                        .document(it)
+                        .collection("challenges")
+                        .document(challengeId)
+                        .delete()
+                        .await()
+
+                    Result.success(Unit)
+                } catch (e: Exception) {
+                    Result.failure(Exception("Error deleting challenge: ${e.message}"))
+                }
+            } ?: Result.failure(Exception("Challenge ID is null"))
+        } ?: Result.failure(Exception("User not authenticated"))
+    }
+
     suspend fun getChallengesList(): Result<MutableList<Challenge>> {
         val userId = getCurrentUserId()
 

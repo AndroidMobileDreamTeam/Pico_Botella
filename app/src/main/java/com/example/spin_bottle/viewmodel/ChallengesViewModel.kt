@@ -43,8 +43,28 @@ class ChallengesViewModel @Inject constructor(
     }
 
     fun deleteChallenge(challenge: Challenge) {
+        viewModelScope.launch {
+            _progressState.value = true
+            try {
+                challengeRepository.deleteChallenge(challenge)
+                getChallengesList()
+                _progressState.value = false
+            } catch (e: Exception) {
+                _progressState.value = false
+            }
+        }
     }
 
     fun updateChallenge(challenge: Challenge) {
+        viewModelScope.launch {
+            _progressState.value = true
+            try {
+                challengeRepository.updateChallenge(challenge)
+                getChallengesList()
+                _progressState.value = false
+            } catch (e: Exception) {
+                _progressState.value = false
+            }
+        }
     }
 }
