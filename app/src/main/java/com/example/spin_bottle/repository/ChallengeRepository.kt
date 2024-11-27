@@ -18,9 +18,9 @@ class ChallengeRepository @Inject constructor(
     }
 
     suspend fun saveChallenge(challenge: Challenge): Result<Unit> {
-         val userId = getCurrentUserId()
+        val userId = getCurrentUserId()
 
-            return userId?.let {
+        return userId?.let {
             try {
                 firestore
                     .collection("users")
@@ -58,6 +58,27 @@ class ChallengeRepository @Inject constructor(
         } ?: Result.failure(Exception("User not authenticated"))
     }
 
+    suspend fun deleteChallenge(challenge: Challenge): Result<Unit> {
+        val userId = getCurrentUserId()
+
+        return userId?.let {
+            challenge.id?.let { challengeId ->
+                try {
+                    firestore
+                        .collection("users")
+                        .document(it)
+                        .collection("challenges")
+                        .document(challengeId)
+                        .delete()
+                        .await()
+
+                    Result.success(Unit)
+                } catch (e: Exception) {
+                    Result.failure(Exception("Error deleting challenge: ${e.message}"))
+                }
+            } ?: Result.failure(Exception("Challenge ID is null"))
+        } ?: Result.failure(Exception("User not authenticated"))
+    }
     suspend fun getChallengesList(): Result<MutableList<Challenge>> {
         val userId = getCurrentUserId()
 
