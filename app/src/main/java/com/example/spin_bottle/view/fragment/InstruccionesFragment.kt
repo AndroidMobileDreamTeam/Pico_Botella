@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.FragmentInstruccionesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InstruccionesFragment : Fragment() {
 
     private lateinit var binding: FragmentInstruccionesBinding

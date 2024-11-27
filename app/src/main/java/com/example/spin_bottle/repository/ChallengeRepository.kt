@@ -1,37 +1,39 @@
 package com.example.spin_bottle.repository
 
-import android.content.Context
-import com.example.spin_bottle.data.ChallengeDB
-import com.example.spin_bottle.data.ChallengeDao
 import com.example.spin_bottle.model.Challenge
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class ChallengeRepository(val context: Context) {
-    private var challengeDao: ChallengeDao = ChallengeDB.getDatabase(context).challengeDao()
+class ChallengeRepository @Inject constructor(
+    private val firestore: FirebaseFirestore
+) {
 
-    suspend fun saveChallenge(challenge: Challenge) {
-        withContext(Dispatchers.IO) {
-            challengeDao.saveChallenge(challenge)
-        }
+    private fun getCurrentUserId(): String? {
+        return FirebaseAuth.getInstance().currentUser?.uid
     }
 
-    suspend fun getChallengesList(): MutableList<Challenge> {
-        return withContext(Dispatchers.IO) {
-            challengeDao.getChallengesList().asReversed()
-        }
-    }
+    suspend fun getChallengesList(): Result<MutableList<Challenge>> {
+        val userId = getCurrentUserId()
 
-    suspend fun deleteChallenge(challenge: Challenge) {
-        withContext(Dispatchers.IO) {
-            challengeDao.deleteChallenge(challenge)
-        }
-    }
+        return userId?.let {
+            try {
+                val snapshot = firestore
+                    .collection("users")
+                    .document(it)
+                    .collection("challenges")
+                    .orderBy("createdAt", Query.Direction.DESCENDING)
+                    .get()
+                    .await()
 
-    suspend fun updateChallenge(challenge: Challenge) {
-        withContext(Dispatchers.IO) {
-            challengeDao.updateChallenge(challenge)
-        }
+                val challengesList = snapshot.toObjects(Challenge::class.java)
+                println("challengesList: $challengesList")
+                Result.success(challengesList)
+            } catch (e: Exception) {
+                Result.failure(Exception("Error fetching challenges: ${e.message}"))
+            }
+        } ?: Result.failure(Exception("User not authenticated"))
     }
-
 }
