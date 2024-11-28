@@ -58,4 +58,32 @@ class ChallengesViewModelTest {
         //Then
         verify(challengesRepository).saveChallenge(challenge)
     }
+
+    @Test
+    fun `test deleteChallenge`(): Unit = runBlocking {
+        //Given
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+
+        val challenge = Challenge("1", "Test Challenge")
+
+        //When
+        challengesViewModel.deleteChallenge(challenge)
+
+        //Then
+        verify(challengesRepository).deleteChallenge(challenge)
+    }
+
+    @Test
+    fun `test updateChallenge`(): Unit = runBlocking {
+        //Given
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+
+        val challenge = Challenge("1", "Test Challenge")
+
+        //When
+        challengesViewModel.updateChallenge(challenge)
+
+        //Then
+        verify(challengesRepository).updateChallenge(challenge)
+    }
 }
