@@ -37,6 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:boxStrokeColor="@color/white"
+            app:boxStrokeWidth="2dp"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
             app:errorTextColor="@color/red"
@@ -67,6 +68,7 @@
             app:endIconTint="@color/white"
             app:hintTextColor="@color/white"
             app:boxStrokeColor="@color/white"
+            app:boxStrokeWidth="2dp"
             app:boxBackgroundMode="outline"
             app:errorEnabled="true"
             app:errorTextColor="@color/red">
