@@ -97,13 +97,13 @@ class LoginFragment: Fragment() {
     }
 
     private fun registerUser(){
-        val registerButton = binding.registerText
-        registerButton.setOnClickListener {
+        registerStatus()
+        binding.registerText.setOnClickListener {
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
 
             authViewModel.registerUser(email, password)
-            registerStatus()
+
         }
     }
 
@@ -121,13 +121,14 @@ class LoginFragment: Fragment() {
     }
 
     private fun loginUser(){
-        val loginButton = binding.loginButton
-        loginButton.setOnClickListener {
+
+        loginStatus()
+        binding.loginButton.setOnClickListener {
             val email = binding.emailInput.text.toString()
             val password = binding.passwordInput.text.toString()
 
             authViewModel.loginUser(email, password)
-            loginStatus()
+
         }
     }
 
@@ -135,9 +136,11 @@ class LoginFragment: Fragment() {
         this.authViewModel.loginStatus.observe(viewLifecycleOwner, Observer { status ->
             when (status) {
                 is AuthStatus.Success -> {
+                    println("LoginFragment: Navegando a HomeFragment2")
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
                 is AuthStatus.Error -> {
+                    println("LoginFragment: Navegando a HomeFragment")
                     Toast.makeText(context, status.message, Toast.LENGTH_SHORT).show()
                 }
             }
