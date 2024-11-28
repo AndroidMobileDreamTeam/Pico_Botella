@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,7 +20,10 @@ import com.example.spin_bottle.view.dialog.RandomChallengeDialog
 import com.example.spin_bottle.viewmodel.ChallengesViewModel
 import com.example.spin_bottle.viewmodel.PokemonsViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.spin_bottle.model.AuthStatus
 import com.example.spin_bottle.viewmodel.AudioViewModel
+import com.example.spin_bottle.viewmodel.AuthViewModel
+import androidx.lifecycle.Observer
 import com.example.spin_bottle_app.R
 import com.example.spin_bottle_app.databinding.HomeFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +33,7 @@ import kotlin.random.Random
 class HomeFragment : Fragment() {
 
     private lateinit var binding: HomeFragmentBinding
+    private val authViewModel: AuthViewModel by viewModels()
     private lateinit var audioViewModel: AudioViewModel
     private var currentAngle = 0f
     private val challengeViewModel: ChallengesViewModel by viewModels()
@@ -286,6 +291,14 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun logoutButton() {
+        val btnLogout = binding.customToolbar.btnLogout
+        btnLogout.setOnClickListener {
+            authViewModel.logoutUser()
+            logoutStatus()
+        }
+    }
+
 
     //Funciones de la barra de herramientas
     private fun toolbarButtons() {
@@ -294,6 +307,7 @@ class HomeFragment : Fragment() {
         instructionsButton()
         challengesButton()
         shareButton()
+        logoutButton()
     }
 
 
@@ -301,6 +315,21 @@ class HomeFragment : Fragment() {
     private fun animatedComponents() {
         startTextViewAnimation()
         buttonStartAnimation()
+    }
+
+
+    // Logout status
+    private fun logoutStatus(){
+        this.authViewModel.logoutStatus.observe(viewLifecycleOwner, Observer { status ->
+            when (status) {
+                is AuthStatus.Success -> {
+                    findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+                }
+                is AuthStatus.Error -> {
+                    Toast.makeText(context, status.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
 }

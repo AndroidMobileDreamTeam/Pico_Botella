@@ -21,6 +21,9 @@ class AuthViewModel @Inject constructor(
     private val _registerStatus = MutableLiveData<AuthStatus>()
     val registerStatus: LiveData<AuthStatus> get() = _registerStatus
 
+    private val _logoutStatus = MutableLiveData<AuthStatus>()
+    val logoutStatus: LiveData<AuthStatus> get() = _logoutStatus
+
     fun registerUser(email: String, password: String) {
         viewModelScope.launch {
             val result = authRepository.registerUser(email, password)
@@ -48,6 +51,21 @@ class AuthViewModel @Inject constructor(
                     )
                 )
 
+            }
+        }
+    }
+
+    fun logoutUser() {
+        viewModelScope.launch {
+            val result = authRepository.logout()
+            if (result.isSuccess) {
+                _logoutStatus.postValue(AuthStatus.Success("Logout Exitoso"))
+            } else {
+                _logoutStatus.postValue(
+                    AuthStatus.Error(
+                        result.exceptionOrNull()?.message ?: "Error desconocido"
+                    )
+                )
             }
         }
     }

@@ -79,6 +79,15 @@
                     android:contentDescription="@string/toolbar_share"
                     android:src="@drawable/icono_share" />
 
+                <ImageButton
+                    android:id="@+id/btn_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/toolbar_logout"
+                    android:src="@drawable/icono_logout" />
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
