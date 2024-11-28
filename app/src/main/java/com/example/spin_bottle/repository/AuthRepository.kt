@@ -25,7 +25,12 @@ class AuthRepository @Inject constructor(
         }
     }
 
-    fun logout() {
-        firebaseAuth.signOut()
+    suspend fun logout(): Result<String> {
+        return try {
+            firebaseAuth.getInstance.signOut().await()
+            Result.success("Logout exitoso")
+        } catch (e: Exception) {
+            Result.failure(Exception("Error en el logout", e))
+        }
     }
 }
