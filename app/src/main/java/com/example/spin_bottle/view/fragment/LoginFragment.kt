@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle.model.AuthStatus
 import com.example.spin_bottle.viewmodel.AuthViewModel
 import com.example.spin_bottle_app.R
+import com.google.firebase.auth.FirebaseAuth
 
 @AndroidEntryPoint
 class LoginFragment: Fragment() {
@@ -27,6 +28,11 @@ class LoginFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = LoginFragmentBinding.inflate(layoutInflater)
+
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            // Si hay un usuario autenticado, navega al fragmento de inicio
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        }
 
         enableButtons()
         registerUser()
