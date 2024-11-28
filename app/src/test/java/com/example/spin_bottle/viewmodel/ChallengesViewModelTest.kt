@@ -13,6 +13,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 
 class ChallengesViewModelTest {
@@ -42,5 +43,19 @@ class ChallengesViewModelTest {
 
         //Then
         assertEquals(challengesViewModel.challengesList.value, mockChallenges)
+    }
+
+    @Test
+    fun `test saveChallenge`(): Unit = runBlocking {
+        //Given
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+
+        val challenge = Challenge("1", "Test Challenge")
+
+        //When
+        challengesViewModel.saveChallenge(challenge)
+
+        //Then
+        verify(challengesRepository).saveChallenge(challenge)
     }
 }
