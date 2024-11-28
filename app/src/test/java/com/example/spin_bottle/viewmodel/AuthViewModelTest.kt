@@ -63,4 +63,20 @@ class AuthViewModelTest {
         //Then
         assertEquals(authViewModel.loginStatus.value, expectedResult)
     }
+
+    @Test
+    fun `test logoutUser`() = runBlocking {
+        //Given
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+
+        val mockEmail = "example@test.com"
+        `when`(authRepository.logout()).thenReturn(Result.success(mockEmail))
+        val expectedResult = AuthStatus.Success("Logout Exitoso")
+
+        //When
+        authViewModel.logoutUser()
+
+        //Then
+        assertEquals(authViewModel.logoutStatus.value, expectedResult)
+    }
 }
