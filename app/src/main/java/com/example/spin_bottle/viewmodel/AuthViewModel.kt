@@ -51,4 +51,20 @@ class AuthViewModel @Inject constructor(
             }
         }
     }
+
+    fun logoutUser() {
+        viewModelScope.launch {
+            val result = authRepository.logout()
+            if (result.isSuccess) {
+                _loginStatus.postValue(AuthStatus.Success("Logout Exitoso"))
+            } else {
+                _loginStatus.postValue(
+                    AuthStatus.Error(
+                        result.exceptionOrNull()?.message ?: "Error desconocido"
+                    )
+                )
+            }
+        }
+    }
+
 }
