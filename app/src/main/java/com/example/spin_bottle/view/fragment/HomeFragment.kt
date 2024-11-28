@@ -296,6 +296,7 @@ class HomeFragment : Fragment() {
         btnLogout.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             authViewModel.logoutUser()
+            logoutStatus()
         }
     }
 
