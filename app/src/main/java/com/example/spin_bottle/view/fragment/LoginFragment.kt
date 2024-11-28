@@ -1,5 +1,6 @@
 package com.example.spin_bottle.view.fragment
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle.model.AuthStatus
 import com.example.spin_bottle.viewmodel.AuthViewModel
 import com.example.spin_bottle_app.R
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 
 @AndroidEntryPoint
@@ -47,14 +49,25 @@ class LoginFragment: Fragment() {
         val emailEt = binding.emailInput
         val passwordEt = binding.passwordInput
 
+        val loginBtn = binding.loginButton
+        val registerBtn = binding.registerText
+
         var emailCheck = false
         var passwordCheck = false
 
         // Función que se encarga de habilitar o deshabilitar los botones
         fun updateButtonState() {
             if (emailCheck && passwordCheck) {
-                binding.loginButton.isEnabled = true
-                binding.registerText.isEnabled = true
+                loginBtn.isEnabled = true
+                loginBtn.setTextColor(resources.getColor(R.color.white))
+                loginBtn.setTypeface(null, Typeface.BOLD)
+                
+                registerBtn.isEnabled = true
+                registerBtn.setTextColor(resources.getColor(R.color.white))
+                registerBtn.setTypeface(null, Typeface.BOLD)
+
+                //binding.loginButton.isEnabled = true
+                //binding.registerText.isEnabled = true
             } else {
                 binding.loginButton.isEnabled = false
                 binding.registerText.isEnabled = false
