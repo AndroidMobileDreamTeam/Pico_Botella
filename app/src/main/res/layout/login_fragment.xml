@@ -36,12 +36,13 @@
             app:layout_constraintTop_toBottomOf="@id/titleTextLogin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/white"
             app:boxStrokeWidth="2dp"
-            app:boxBackgroundMode="outline"
+            app:boxStrokeWidthFocused="2dp"
+            app:hintTextColor="@color/white"
             app:errorEnabled="true"
-            app:errorTextColor="@color/red"
-            app:hintTextColor="@color/white">
+            app:errorTextColor="@color/red">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/emailInput"
@@ -64,12 +65,13 @@
             app:layout_constraintTop_toBottomOf="@id/emailInputLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/white"
+            app:boxStrokeWidth="2dp"
+            app:boxStrokeWidthFocused="2dp"
             app:passwordToggleEnabled="true"
             app:endIconTint="@color/white"
             app:hintTextColor="@color/white"
-            app:boxStrokeColor="@color/white"
-            app:boxStrokeWidth="2dp"
-            app:boxBackgroundMode="outline"
             app:errorEnabled="true"
             app:errorTextColor="@color/red">
 
