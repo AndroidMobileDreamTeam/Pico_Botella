@@ -294,7 +294,6 @@ class HomeFragment : Fragment() {
     private fun logoutButton() {
         val btnLogout = binding.customToolbar.btnLogout
         btnLogout.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
             authViewModel.logoutUser()
             logoutStatus()
         }
@@ -320,7 +319,7 @@ class HomeFragment : Fragment() {
 
     // Logout status
     private fun logoutStatus(){
-        this.authViewModel.loginStatus.observe(viewLifecycleOwner, Observer { status ->
+        this.authViewModel.logoutStatus.observe(viewLifecycleOwner, Observer { status ->
             when (status) {
                 is AuthStatus.Success -> {
                     findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
