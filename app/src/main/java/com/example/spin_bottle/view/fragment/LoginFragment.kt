@@ -8,17 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import com.example.spin_bottle_app.databinding.LoginFragmentBinding
-import dagger.hilt.android.AndroidEntryPoint
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle.model.AuthStatus
 import com.example.spin_bottle.viewmodel.AuthViewModel
 import com.example.spin_bottle_app.R
-import com.google.android.material.button.MaterialButton
+import com.example.spin_bottle_app.databinding.LoginFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginFragment: Fragment() {
@@ -34,6 +34,10 @@ class LoginFragment: Fragment() {
         if (FirebaseAuth.getInstance().currentUser != null) {
             // Si hay un usuario autenticado, navega al fragmento de inicio
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().moveTaskToBack(true)
         }
 
         enableButtons()
