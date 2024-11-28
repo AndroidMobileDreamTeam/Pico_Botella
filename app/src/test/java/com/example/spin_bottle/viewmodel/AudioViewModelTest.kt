@@ -69,4 +69,44 @@ class AudioViewModelTest {
         //Then
         assertEquals(audioViewModel.isAudioOn.value, expectedAudioState)
     }
+
+    @Test
+    fun `test spinSound`() {
+        //Given
+        `when`(MediaPlayer.create(context, R.raw.spin_bottle)).thenReturn(mediaPlayer)
+
+        //When
+        audioViewModel.spinSound(context)
+
+        //Then
+        verify(mediaPlayer).start()
+    }
+
+    @Test
+    fun `test homeSound`() = runBlocking {
+        //Given
+        Dispatchers.setMain(UnconfinedTestDispatcher())
+
+        `when`(MediaPlayer.create(context, R.raw.background_music)).thenReturn(mediaPlayer)
+
+        //When
+        audioViewModel.homeSound(context)
+
+        //Then
+        verify(mediaPlayer).start()
+    }
+
+    @Test
+    fun `test releaseMediaPlayer`() {
+        //Given
+        `when`(MediaPlayer.create(context, R.raw.background_music)).thenReturn(mediaPlayer)
+
+        //When
+        audioViewModel.initMediaPlayer(context)
+        audioViewModel.releaseMediaPlayer()
+
+        //Then
+        verify(mediaPlayer).release()
+        assertNull(audioViewModel.mediaPlayer)
+    }
 }
