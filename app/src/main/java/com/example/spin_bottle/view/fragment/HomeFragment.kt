@@ -307,6 +307,7 @@ class HomeFragment : Fragment() {
         instructionsButton()
         challengesButton()
         shareButton()
+        logoutButton()
     }
 
 
