@@ -1,5 +1,6 @@
 package com.example.spin_bottle.view.fragment
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.spin_bottle.model.AuthStatus
 import com.example.spin_bottle.viewmodel.AuthViewModel
 import com.example.spin_bottle_app.R
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 
 @AndroidEntryPoint
@@ -47,6 +49,9 @@ class LoginFragment: Fragment() {
     private fun enableButtons() {
         val emailEt = binding.emailInput
         val passwordEt = binding.passwordInput
+
+        val loginBtn = binding.loginButton
+        val registerBtn = binding.registerText
 
         var emailCheck = false
         var passwordCheck = false
