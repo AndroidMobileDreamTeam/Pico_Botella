@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.ui.text.font.Typeface
 import androidx.fragment.app.Fragment
 import com.example.spin_bottle_app.databinding.LoginFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,9 +54,13 @@ class LoginFragment: Fragment() {
         // Función que se encarga de habilitar o deshabilitar los botones
         fun updateButtonState() {
             if (emailCheck && passwordCheck) {
+                binding.loginButton.setTextAppearance(R.style.TextAppearance_AppCompat_Bold)
+                binding.registerText.setTextAppearance(R.style.TextAppearance_AppCompat_Bold)
                 binding.loginButton.isEnabled = true
                 binding.registerText.isEnabled = true
             } else {
+                binding.loginButton.setTextAppearance(R.style.TextAppearance_AppCompat2)
+                binding.registerText.setTextAppearance(R.style.TextAppearance_AppCompat2)
                 binding.loginButton.isEnabled = false
                 binding.registerText.isEnabled = false
             }
